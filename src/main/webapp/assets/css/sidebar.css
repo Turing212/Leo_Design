@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.side-bar {
+    background: rgba(39, 39, 39, 0.9);
+    backdrop-filter: blur(15px);
+    width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    overflow-y: auto;
+    transition: 0.6s ease;
+    transition-property: left;
+    z-index: 100;
+    font-family: Simple-Text;
+}
+
+.side-bar::-webkit-scrollbar{
+    display: none;
+}
+
+.side-bar.active {
+    left: 0;
+}
+
+.side-bar .menu {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.side-bar .menu .item{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .item a{
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 30px;
+    line-height: 60px;
+}
+
+.side-bar .menu .item a:hover{
+    color: black;
+    background: #eeeeee;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item a .dropdown{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    transition: 0.3s ease;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.side-bar .menu .item .sub-menu {
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+}
+
+.side-bar .menu .item .sub-menu a{
+    padding-left: 60px;
+}
+.side-bar .menu .item .sub-menu .sub-sub-item{
+    padding-left: 100px;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+.close-btn {
+    position: absolute;
+    margin-left: 320px;
+    cursor: pointer;
+}
+.menu-btn {
+    position: absolute;
+    cursor: pointer;
+}

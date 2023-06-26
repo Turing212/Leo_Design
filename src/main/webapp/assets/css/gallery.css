@@ -1,0 +1,116 @@
+
+  .slider-wrapper {
+    
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides-container {
+    height: 700px;
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
+  
+  .slide-arrow {
+    position: absolute;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 4rem;
+    background-color: white;
+    border: none;
+    width: 2rem;
+    font-size: 3rem;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 100ms;
+  }
+  .slide-arrow:hover,
+  .slide-arrow:focus {
+    opacity: 1;
+  }
+  #slide-arrow-prev {
+    left: 0;
+    padding-left: 0.25rem;
+    border-radius: 0 2rem 2rem 0;
+    font-family: Arial;
+  }
+  #slide-arrow-next {
+    right: 0;
+    padding-left: 0.75rem;
+    border-radius: 2rem 0 0 2rem;
+    font-family: Arial;
+  }
+  .slide {
+    width: 100%;
+    height: 100%;
+    flex: 1 0 100%;
+  }
+
+  .slide div {
+    margin: 200px;
+    text-align: center;
+    font-family: Simple-Text;
+  }
+  .slide h1 {
+    color: #272727;
+    font-size: 6vb;
+    text-shadow: 3px 2px 3px #5d5d5d;
+    margin-bottom: unset;
+  }
+
+  .slide p {
+    color: #000000;
+    margin-top: unset;
+  }
+
+  .slide button {
+    font-size: 20px;
+    color: white;
+
+    border-radius: 30px;
+    margin: 7px;
+    position: relative;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    display: inline-block;
+    transition: all .2s;
+    border: none;
+    font-weight: 500;
+    background: linear-gradient(145deg, #505050, #272727);
+  }
+  .slide:nth-child(1) {
+    background-color: #eeeeee;
+  }
+  
+  .slide:nth-child(2) {
+    background-color: #eeeeee;
+  }
+  
+  .slide:nth-child(3) {
+    background-color: #eeeeee;
+    margin: 0;
+  }
+  
+  .slide:nth-child(4) {
+    background-color: #eeeeee;
+    margin: 0;
+  }
+
+  .slides-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+/* WebKit */
+.slides-container::-webkit-scrollbar { 
+    width: 0;
+    height: 0;
+}

@@ -1,0 +1,54 @@
+footer {
+    background: linear-gradient(to left, #505050, #454545, #3b3b3b, #313131, #272727);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Simple-Text;
+
+
+}
+
+footer h1 {
+    font-size: 40px;
+    font-family: Title;
+    color: white;
+    text-shadow: 2px 2px 5px #ffbe4d;
+    padding-bottom: 20px;
+    padding-right: 300px;
+    margin-bottom: 80px;
+}
+
+footer h2 {
+    font-size: 20px;
+    font-family: Simple-Text;
+    display: flex;
+
+    align-items: center;
+}
+footer a {
+    font-size: 20px;
+    color: #ffbe4d;
+
+}
+
+footer div {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+}
+
+.border-bottom {
+    border-bottom: 1px solid white;
+}
+.list-unstyled {
+    list-style-type: none;
+    padding: 0;
+}
+footer li {
+
+    margin-top: 20px;
+}
+

@@ -1,0 +1,105 @@
+.pagamento {
+    height: 1000px;
+    background-color: #eeeeee;
+    border-radius: 20px;
+    margin: auto;
+    width: 60%;
+    padding: 20px;
+}
+
+.pay-method {
+    text-align: center;
+}
+.pay-method .button {
+    font-size: 20px;
+    color: white;
+    margin-top: 50%;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-family: Simple-Text;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.input-data {
+    font-size: 12px;
+    width: 400px;
+    margin: 10px;
+}
+
+.input-data div {
+    margin: 40px;
+}
+
+.input-data input {
+    background-color: #eeeeee;
+    height: 40px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.input-data input:focus {
+    color: black;
+    background-color: #eeeeee;
+    outline-color: #ffbe4d;
+    box-shadow: -3px -3px 15px #ffbe4d;
+    transition: .1s;
+    transition-property: box-shadow;
+}
+
+.background-card {
+    background-color: #dcdcdc;
+    height: 240px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top:  80px;
+}
+
+.background-card input {
+    text-align: center;
+    margin-top: 70px;
+    text-transform: uppercase;
+}
+
+.radio-inputs {
+
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 100%;
+    font-size: 14px;
+    font-family: Title;
+    margin-top: 30px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+    background-color: #fff;
+    font-weight: 600;
+}

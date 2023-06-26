@@ -1,0 +1,55 @@
+.carrello div {
+    height: 300px;
+    border-radius: 20px;
+
+}
+.carrello .modulo {
+    padding: 60px 0;
+    margin-right: 50px;
+}
+.carrello h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.single-product {
+    margin: 50px;
+    padding: 20px;
+    background-color: #eeeeee;
+
+}
+.totale-ordine {
+    margin: 20px;
+    padding: 20px;
+    height: 100px;
+    border-radius: 20px;
+    background-color: #eeeeee;
+}
+
+.totale-ordine button{
+    font-size: 20px;
+    font-family: Simple-Text;
+    color: white;
+    margin-right: 40px;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+.single-product img {
+    text-align: left;
+
+}
+.carrello .modulo div {
+    margin-top: 20px;
+    font-size: 18px;
+}
+.carrello a:link {
+    text-decoration: none;
+    color: #c7c7c7;
+}
+.carrello a:hover {
+    text-decoration: underline;
+    color: #ffbe4d;
+}
+.carrello a:visited {
+    text-decoration: none;
+    color: black;
+}
