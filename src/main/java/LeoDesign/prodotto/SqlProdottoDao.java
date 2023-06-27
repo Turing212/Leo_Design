@@ -1,10 +1,7 @@
 package LeoDesign.prodotto;
 
-import LeoDesign.account.Account;
-import LeoDesign.account.AccountExtractor;
-import LeoDesign.categoria.Categoria;
 import LeoDesign.categoria.CategoriaExtractor;
-import LeoDesign.categoria.CategoriaQuery;
+
 import LeoDesign.magazzino.MagazzinoExtractor;
 import LeoDesign.storage.Manager;
 
@@ -55,7 +52,11 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
                 Prodotto prodotto = null;
                 if (set.next()) {
                     ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
+                    CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                    MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                     prodotto = prodottoExtractor.extract(set);
+                    prodotto.setCategoria(categoriaExtractor.extract(set));
+                    prodotto.setMagazzino(magazzinoExtractor.extract(set));
                 }
                 return Optional.ofNullable(prodotto);
             }
@@ -73,6 +74,8 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
                 ps.setString(5, prodotto.getImmagine1());
                 ps.setString(6, prodotto.getImmagine2());
                 ps.setString(7, prodotto.getImmagine3());
+                ps.setInt(8, prodotto.getMagazzino().getIDmagazzino());
+                ps.setInt(9, prodotto.getCategoria().getId());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
@@ -90,7 +93,9 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
                 ps.setString(5, prodotto.getImmagine1());
                 ps.setString(6, prodotto.getImmagine2());
                 ps.setString(7, prodotto.getImmagine3());
-                ps.setInt(8, prodotto.getIdProdotto());
+                ps.setInt(8, prodotto.getMagazzino().getIDmagazzino());
+                ps.setInt(9, prodotto.getCategoria().getId());
+                ps.setInt(10, prodotto.getIdProdotto());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
