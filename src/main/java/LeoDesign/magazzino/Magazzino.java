@@ -1,18 +1,18 @@
 package LeoDesign.magazzino;
 
 public class Magazzino {
-    private String IDmagazzino;
+    private int IDmagazzino;
     private String nomeMagazzino;
 
     public Magazzino() {
         super();
     }
 
-    public String getIDmagazzino() {
+    public int getIDmagazzino() {
         return IDmagazzino;
     }
 
-    public void setIDmagazzino(String IDmagazzino) {
+    public void setIDmagazzino(int IDmagazzino) {
         this.IDmagazzino = IDmagazzino;
     }
 

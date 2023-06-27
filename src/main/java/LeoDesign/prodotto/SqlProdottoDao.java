@@ -3,7 +3,9 @@ package LeoDesign.prodotto;
 import LeoDesign.account.Account;
 import LeoDesign.account.AccountExtractor;
 import LeoDesign.categoria.Categoria;
+import LeoDesign.categoria.CategoriaExtractor;
 import LeoDesign.categoria.CategoriaQuery;
+import LeoDesign.magazzino.MagazzinoExtractor;
 import LeoDesign.storage.Manager;
 
 import javax.sql.DataSource;
@@ -22,14 +24,20 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
     }
 
     @Override
-    public List<Prodotto> fetchProdotti() throws SQLException {
+    public List<Prodotto> fetchProdotti(int start, int end) throws SQLException {
         try(Connection conn = source.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectProdotti())) {
+                ps.setInt(1, start);
+                ps.setInt(2, end);
                 ResultSet set = ps.executeQuery();
+                ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
+                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                 List<Prodotto> prodotti = new ArrayList<>();
                 while (set.next()){
-                    ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
                     Prodotto prodotto = prodottoExtractor.extract(set);
+                    prodotto.setCategoria(categoriaExtractor.extract(set));
+                    prodotto.setMagazzino(magazzinoExtractor.extract(set));
                     prodotti.add(prodotto);
                 }
                 set.close();

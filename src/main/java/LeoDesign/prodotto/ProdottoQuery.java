@@ -7,7 +7,7 @@ public class ProdottoQuery extends TableQuery {
         super(table);
     }
     String selectProdotti() {
-        return String.format("SELECT * FROM %s;", this.table);
+        return String.format("SELECT * FROM %s LIMIT ?, ?;", this.table);
     }
 
     String selectProdotto() {
