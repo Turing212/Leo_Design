@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SqlMagazzinoDao extends Manager implements MagazzinoDao {
-    private static final MagazzinoQuery QUERY = new MagazzinoQuery("magazzino");
+    private static final MagazzinoQuery QUERY = new MagazzinoQuery("Magazzino");
     public SqlMagazzinoDao(DataSource source) {
         super(source);
     }

@@ -10,7 +10,7 @@ public class MagazzinoExtractor implements ResultSetExtractor {
     public Magazzino extract(ResultSet resultSet) throws SQLException {
         Magazzino magazzino = new Magazzino();
         magazzino.setIDmagazzino(resultSet.getInt("idMagazzino"));
-        magazzino.setNomeMagazzino(resultSet.getString("nome"));
+        magazzino.setNomeMagazzino(resultSet.getString("nome_magazzino"));
         return magazzino;
     }
 }

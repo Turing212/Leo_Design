@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SqlProdottoDao extends Manager implements ProdottoDao {
-    private static final ProdottoQuery QUERY = new ProdottoQuery("prodotto");
+    private static final ProdottoQuery QUERY = new ProdottoQuery("Prodotto");
     public SqlProdottoDao(DataSource source) {
         super(source);
     }

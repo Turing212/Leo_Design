@@ -10,7 +10,7 @@ public class AccountExtractor implements ResultSetExtractor {
     public Account extract(ResultSet resultSet) throws SQLException {
         Account account = new Account();
         account.setEmail(resultSet.getString("email"));
-        account.setPassword(resultSet.getString("password"));
+        account.setPassword(resultSet.getString("pass"));
         account.setNome(resultSet.getString("nome"));
         account.setCognome(resultSet.getString("cognome"));
         account.setTelefono(resultSet.getString("telefono"));
@@ -18,7 +18,7 @@ public class AccountExtractor implements ResultSetExtractor {
         account.setProvincia(resultSet.getString("provincia"));
         account.setCitta(resultSet.getString("citta"));
         account.setCAP(resultSet.getString("CAP"));
-        account.setAdmin(resultSet.getBoolean("admin"));
+        account.setAdmin(resultSet.getBoolean("account_admin"));
         return account;
     }
 }

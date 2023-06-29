@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class SqlOrdineDao extends Manager implements OrdineDao{
-    private static final OrdineQuery QUERY = new OrdineQuery("ordine");
+    private static final OrdineQuery QUERY = new OrdineQuery("Ordine");
     public SqlOrdineDao(DataSource source) {
         super(source);
     }

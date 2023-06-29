@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class SqlAccountDao extends Manager implements AccountDao{
 
-    private static final AccountQuery QUERY = new AccountQuery("account");
+    private static final AccountQuery QUERY = new AccountQuery("Cliente");
     public SqlAccountDao(DataSource source) {
         super(source);
     }
