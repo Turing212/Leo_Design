@@ -8,7 +8,7 @@ public class OrdineQuery extends TableQuery {
     }
     String selectOrdini() { return String.format("SELECT * FROM %s;", this.table); }
     String selectOrdine() { return String.format("SELECT * FROM %s WHERE idOrdine=?;", this.table); }
-    String insertOrdine() { return String.format("INSERT INTO %s (idOrdine, data_inserimento, stato_ordine, totale) VALUES(?,?,?,?);", this.table); }
+    String insertOrdine() { return String.format("INSERT INTO %s (idOrdine, data_inserimento, stato_ordine, totale, cliente) VALUES(?,?,?,?,?);", this.table); }
     String updateOrdine() { return String.format("UPDATE FROM %s SET stato=? WHERE idOrdine=?;", this.table); }
     String selectOrdiniWithProdotti(){ return "SELECT * FROM Composizione AS PO " +
             "INNER JOIN ordine ON PO.ordine = ordine.idOrdine " +
