@@ -66,4 +66,7 @@ public class Ordine {
     public void setCarrello(Carrello carrello) {
         this.carrello = carrello;
     }
+    public int entrate(){
+        return carrello.getItems().size();
+    }
 }

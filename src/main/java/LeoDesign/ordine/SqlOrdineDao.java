@@ -104,7 +104,7 @@ public class SqlOrdineDao extends Manager implements OrdineDao{
                     ps2.setInt(3, item.getQuantita());
                     total += ps2.executeUpdate();
                 }
-                if(total == (rows + ordine.getTotale())) {
+                if(total == (rows + ordine.entrate())) {
                     conn.commit();
                     conn.setAutoCommit(true);
                     return true;
