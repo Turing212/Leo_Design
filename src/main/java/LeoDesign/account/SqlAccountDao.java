@@ -1,6 +1,7 @@
 package LeoDesign.account;
 
 import LeoDesign.storage.Manager;
+import LeoDesign.storage.Paginator;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -19,11 +20,11 @@ public class SqlAccountDao extends Manager implements AccountDao{
     }
 
     @Override
-    public List<Account> fetchAccounts(int start, int end) throws SQLException {
+    public List<Account> fetchAccounts(Paginator paginator) throws SQLException {
         try(Connection conn = source.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectAccounts())) {
-                ps.setInt(1, start);
-                ps.setInt(2, end);
+                ps.setInt(1, paginator.getOffset());
+                ps.setInt(2, paginator.getLimit());
                 ResultSet set = ps.executeQuery();
                 List<Account> accounts = new ArrayList<>();
                 while (set.next()){

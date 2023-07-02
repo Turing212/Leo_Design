@@ -3,6 +3,7 @@ package LeoDesign.magazzino;
 import LeoDesign.account.Account;
 import LeoDesign.account.AccountExtractor;
 import LeoDesign.storage.Manager;
+import LeoDesign.storage.Paginator;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -20,11 +21,11 @@ public class SqlMagazzinoDao extends Manager implements MagazzinoDao {
     }
 
     @Override
-    public List<Magazzino> fetchMagazzini(int start, int end) throws SQLException {
+    public List<Magazzino> fetchMagazzini(Paginator paginator) throws SQLException {
         try(Connection conn = source.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectMagazzini())) {
-                ps.setInt(1, start);
-                ps.setInt(2, end);
+                ps.setInt(1, paginator.getOffset());
+                ps.setInt(2, paginator.getLimit());
                 ResultSet set = ps.executeQuery();
                 MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                 List<Magazzino> magazzini = new ArrayList<>();
