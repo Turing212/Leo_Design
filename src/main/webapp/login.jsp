@@ -100,7 +100,7 @@
             <form action="HomeControllerSearchBar" id="searchBarForm" class="display-inline-flex justify-content-between common-margin">
                 <input placeholder="Cerca" class="search" id="searchBarText" type="text">
                 <button type="submit" value="Submit" class="button">
-                    <img id="search-png" onmouseover="search()"  width="40em" height="40em" src="assets/img/search.png" alt="cerca">
+                    <img id="search-png" onmouseover="search()" width="40em" height="40em" src="assets/img/search.png" alt="cerca">
                     <img id="search-gif" onmouseout="search()" style="display: none;" width="40em" height="40em" src="assets/img/search.gif" alt="cerca">
                 </button>
             </form>
@@ -118,7 +118,7 @@
             <div id="carrelloContainer" class="common-margin">
                 <button class="button">
                     <a href="carrello.html">
-                        <img id="carrello-png" onmouseover="carrello()"  width="40em" height="40em" src="assets/img/carrello.png" alt="carrello">
+                        <img id="carrello-png" onmouseover="carrello()" width="40em" height="40em" src="assets/img/carrello.png" alt="carrello">
                         <img id="carrello-gif" onmouseout="carrello()" style="display: none;" width="40em" height="40em" src="assets/img/carrello.gif" alt="carrello">
                     </a>
                 </button>
