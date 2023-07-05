@@ -1,5 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="context" value="${pageContext.request.contextPath}"/>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +9,10 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/common.css">
     <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/card.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/product.css">
-    <link rel="stylesheet" href="assets/css/login.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" charset="utf-8"></script>
 
 </head>
@@ -36,7 +35,7 @@
                     <img src="assets/img/menu-end.png" class="toggle">
                 </div>
                 <div class="menu">
-                    <div class="item"><a href="${context}/index.html"><i ></i>Home</a> </div>
+                    <div class="item"><a href="home.jsp"><i ></i>Home</a> </div>
                     <div class="item">
                         <a href="#" class="sub-btn"><i ></i>Catalogo <i class="dropdown"> &gt; </i></a>
                         <div class="sub-menu">
@@ -101,7 +100,7 @@
             <form action="HomeControllerSearchBar" id="searchBarForm" class="display-inline-flex justify-content-between common-margin">
                 <input placeholder="Cerca" class="search" id="searchBarText" type="text">
                 <button type="submit" value="Submit" class="button">
-                    <img id="search-png" onmouseover="search()" width="40em" height="40em" src="assets/img/search.png" alt="cerca">
+                    <img id="search-png" onmouseover="search()"  width="40em" height="40em" src="assets/img/search.png" alt="cerca">
                     <img id="search-gif" onmouseout="search()" style="display: none;" width="40em" height="40em" src="assets/img/search.gif" alt="cerca">
                 </button>
             </form>
@@ -110,7 +109,7 @@
         <div id="logCarrelloContainer" class="display-inline-flex justify-content-between common-margin">
             <div id="loginContainer" class="common-margin">
                 <button class="button">
-                    <a href="login.html">
+                    <a href="login.jsp">
                         <img id="avatar-png" onmouseover="avatar()" width="40em" height="40em" src="assets/img/avatar.png" alt="login/register">
                         <img id="avatar-gif" onmouseout="avatar()" style="display: none;" width="40em" height="40em" src="assets/img/avatar.gif" alt="login/register">
                     </a>
@@ -118,8 +117,8 @@
             </div>
             <div id="carrelloContainer" class="common-margin">
                 <button class="button">
-                    <a href="carrello.html">
-                        <img id="carrello-png" onmouseover="carrello()" width="40em" height="40em" src="assets/img/carrello.png" alt="carrello">
+                    <a href="carrello.jsp">
+                        <img id="carrello-png" onmouseover="carrello()"  width="40em" height="40em" src="assets/img/carrello.png" alt="carrello">
                         <img id="carrello-gif" onmouseout="carrello()" style="display: none;" width="40em" height="40em" src="assets/img/carrello.gif" alt="carrello">
                     </a>
                 </button>
@@ -148,48 +147,133 @@
     <!-- End SubMenu Bar -->
 </header>
 
-<!-- Start login -->
+<!-- Start Gallery -->
+<div class="slider-wrapper">
+    <button class="slide-arrow" id="slide-arrow-prev">
+        &#8249;
+    </button>
+    <button class="slide-arrow" id="slide-arrow-next">
+        &#8250;
+    </button>
+    <div class="slides-container" id="slides-container">
+        <div class="slide display-inline-flex">
+            <div>
 
-<div class="login-signup" id="container">
-    <div class="form-container sign-up-container">
-        <form action="#">
-            <h1>Crea Account</h1>
-            <span>o usa la tua email per la registrazione</span>
-            <input type="text" placeholder="Nome" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Registrati</button>
-        </form>
-    </div>
-    <div class="form-container sign-in-container">
-        <form action="#">
-            <h1>Accedi</h1>
+                <h1> Lampada da tavolo </h1>
+                <p>La lampada a sospensione offre con il suo design accattivante un'illuminazione accogliente <br>in ogni stanza sia nel soggiorno, nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
+                <a href="#lampada">
+                    <button class="button" >Acquista ora</button>
+                </a>
+            </div>
+            <img src="assets/img/lamp.png">
+        </div>
+        <div class="slide display-inline-flex">
+            <div>
 
-            <span>o usa il tuo account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <!-- <a href="#">hai dimenticato la password?</a> -->
-            <button>Accedi</button>
-        </form>
-    </div>
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Bentornato!</h1>
-                <p>Per restare connesso effettua il login con i tuoi dati personali</p>
-                <button class="ghost" id="signIn">Accedi</button>
+                <h1> Lampada da tavolo </h1>
+                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
+                <a href="#lampada">
+                    <button class="button">Acquista ora</button>
+                </a>
             </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Benvenuto!</h1>
-                <p>Inserisci i tuoi dati personali</p>
-                <button class="ghost" id="signUp">Registrati</button>
+            <img src="assets/img/lamp.png">
+        </div>
+        <div class="slide display-inline-flex">
+            <div>
+
+                <h1> Lampada da tavolo </h1>
+                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
+                <a href="#lampada">
+                    <button class="button">Acquista ora</button>
+                </a>
             </div>
+            <img src="assets/img/lamp.png">
+        </div>
+        <div class="slide display-inline-flex">
+            <div>
+
+                <h1> Lampada da tavolo </h1>
+                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
+                <a href="#lampada">
+                    <button class="button">Acquista ora</button>
+                </a>
+            </div>
+            <img src="assets/img/lamp.png">
         </div>
     </div>
 </div>
 
-<!-- End login -->
+<!--End Gallery -->
 
+<!-- Start Banner Cards -->
+<div class="banner">
+    <h1> Prodotti di tendenza</h1>
+</div>
+
+<!--End Banner Cards -->
+
+
+<!-- Start Product Card -->
+<div class="cards display-flex justify-content-between align-items-stretch">
+    <div class="justify-content-between display-inline-flex">
+        <div class="card">
+            <a href="shop-single.html">
+                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <h1 class="text-title">Lampada da tavolo</h1>
+                        <p class="text-subtitle">€ 49.99</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="justify-content-between display-inline-flex">
+        <div class="card">
+            <a href="shop-single.html">
+                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <h1 class="text-title">Lampada da tavolo</h1>
+                        <p class="text-subtitle">€ 49.99</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="justify-content-between display-inline-flex">
+        <div class="card">
+            <a href="shop-single.html">
+                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <h1 class="text-title">Lampada da tavolo</h1>
+                        <p class="text-subtitle">€ 49.99</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="justify-content-between display-inline-flex">
+        <div class="card">
+            <a href="shop-single.html">
+                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
+                <div class="card-info">
+                    <div class="card-text">
+                        <h1 class="text-title">Lampada da tavolo</h1>
+                        <p class="text-subtitle">€ 49.99</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- End Product Card -->
 
 <!-- Start Footer -->
 <footer class="footer">
@@ -238,9 +322,9 @@
 <!-- End Footer -->
 
 <!-- Start Script -->
+<script src="assets/js/gallery.js"></script>
 <script src="assets/js/gifHover.js"></script>
 <script src="assets/js/sidebar.js"></script>
-<script src="assets/js/login.js"></script>
 <!-- End Script -->
 </body>
 
