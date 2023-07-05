@@ -2,7 +2,9 @@ package LeoDesign.model.prodotto;
 
 import LeoDesign.model.categoria.CategoriaExtractor;
 
+import LeoDesign.model.categoria.SqlCategoriaDao;
 import LeoDesign.model.magazzino.MagazzinoExtractor;
+import LeoDesign.model.storage.ConnManager;
 import LeoDesign.model.storage.Manager;
 import LeoDesign.model.storage.Paginator;
 
@@ -15,15 +17,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SqlProdottoDao extends Manager implements ProdottoDao {
+public class SqlProdottoDao implements ProdottoDao {
     private static final ProdottoQuery QUERY = new ProdottoQuery("Prodotto");
-    public SqlProdottoDao(DataSource source) {
-        super(source);
+    //public SqlProdottoDao(DataSource source) {super(source);}
+    private SqlCategoriaDao servizioCategoria;
+
+    public SqlProdottoDao(){
+        servizioCategoria = new SqlCategoriaDao();
     }
+
 
     @Override
     public List<Prodotto> fetchProdotti(Paginator paginator) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectProdotti())) {
                 ps.setInt(1, paginator.getOffset());
                 ps.setInt(2, paginator.getLimit());
@@ -34,8 +40,8 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
                 List<Prodotto> prodotti = new ArrayList<>();
                 while (set.next()){
                     Prodotto prodotto = prodottoExtractor.extract(set);
-                    prodotto.setCategoria(categoriaExtractor.extract(set));
-                    prodotto.setMagazzino(magazzinoExtractor.extract(set));
+                    prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
+                    //prodotto.setMagazzino(magazzinoExtractor.extract(set));
                     prodotti.add(prodotto);
                 }
                 set.close();
@@ -46,7 +52,7 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
 
     @Override
     public Optional<Prodotto> fetchProdotto(int id) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectProdotto())) {
                 ps.setInt(1, id);
                 ResultSet set = ps.executeQuery();
@@ -66,7 +72,7 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
 
     @Override
     public boolean createProdotto(Prodotto prodotto) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.insertProdotto())) {
                 ps.setString(1, prodotto.getNome());
                 ps.setString(2, prodotto.getDescrizione());
@@ -85,7 +91,7 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
 
     @Override
     public boolean updateProdotto(Prodotto prodotto) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.updateProdotto())) {
                 ps.setString(1, prodotto.getNome());
                 ps.setString(2, prodotto.getDescrizione());
@@ -105,7 +111,7 @@ public class SqlProdottoDao extends Manager implements ProdottoDao {
 
     @Override
     public boolean deleteProdotto(int id) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.deleteProdotto())) {
                 ps.setInt(1, id);
                 int rows = ps.executeUpdate();

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -156,50 +157,20 @@
         &#8250;
     </button>
     <div class="slides-container" id="slides-container">
+        <c:forEach items="${listaProdotti}" var="prodotti">
         <div class="slide display-inline-flex">
             <div>
 
-                <h1> Lampada da tavolo </h1>
-                <p>La lampada a sospensione offre con il suo design accattivante un'illuminazione accogliente <br>in ogni stanza sia nel soggiorno, nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
+                <h1> ${prodotti.nome} </h1>
+                <p>${prodotti.descrizione} </p>
                 <a href="#lampada">
                     <button class="button" >Acquista ora</button>
                 </a>
             </div>
-            <img src="assets/img/lamp.png">
+            <img src="${prodotti.immagine1}">
         </div>
-        <div class="slide display-inline-flex">
-            <div>
+        </c:forEach>
 
-                <h1> Lampada da tavolo </h1>
-                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
-                <a href="#lampada">
-                    <button class="button">Acquista ora</button>
-                </a>
-            </div>
-            <img src="assets/img/lamp.png">
-        </div>
-        <div class="slide display-inline-flex">
-            <div>
-
-                <h1> Lampada da tavolo </h1>
-                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
-                <a href="#lampada">
-                    <button class="button">Acquista ora</button>
-                </a>
-            </div>
-            <img src="assets/img/lamp.png">
-        </div>
-        <div class="slide display-inline-flex">
-            <div>
-
-                <h1> Lampada da tavolo </h1>
-                <p>La lampada a sospensione offre con il suo design accattivante<br> un'illuminazione accogliente in ogni stanza sia nel soggiorno,<br>nella camera da letto o nella sala da pranzo sopra il tavolo da pranzo </p>
-                <a href="#lampada">
-                    <button class="button">Acquista ora</button>
-                </a>
-            </div>
-            <img src="assets/img/lamp.png">
-        </div>
     </div>
 </div>
 

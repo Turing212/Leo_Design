@@ -1,5 +1,6 @@
 package LeoDesign.model.categoria;
 
+import LeoDesign.model.storage.ConnManager;
 import LeoDesign.model.storage.Manager;
 import LeoDesign.model.prodotto.ProdottoExtractor;
 
@@ -12,15 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SqlCategoriaDao extends Manager implements CategoriaDao{
+public class SqlCategoriaDao implements CategoriaDao{
     private static final CategoriaQuery QUERY = new CategoriaQuery("categoria");
-    public SqlCategoriaDao(DataSource source) {
-        super(source);
-    }
+
 
     @Override
     public List<Categoria> fetchCategorie() throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectCategorie())) {
                 ResultSet set = ps.executeQuery();
                 List<Categoria> categorie = new ArrayList<>();
@@ -36,8 +35,26 @@ public class SqlCategoriaDao extends Manager implements CategoriaDao{
     }
 
     @Override
+    public Categoria fetchCategoriaById(int id) throws SQLException {
+        try(Connection conn = ConnManager.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement(QUERY.selectCategoria())) {
+                ps.setInt(1,id);
+                ResultSet set = ps.executeQuery();
+                Categoria categoria = null;
+                while (set.next()){
+                    CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
+                     categoria = categoriaExtractor.extract(set);
+
+                }
+                set.close();
+                return categoria;
+            }
+        }
+    }
+
+    @Override
     public boolean createCategoria(Categoria categoria) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.insertCategoria())) {
                 ps.setString(1, categoria.getTitolo());
                 int rows = ps.executeUpdate();
@@ -48,7 +65,7 @@ public class SqlCategoriaDao extends Manager implements CategoriaDao{
 
     @Override
     public boolean updateCategoria(Categoria categoria) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.updateCategoria())) {
                 ps.setString(1, categoria.getTitolo());
                 ps.setInt(2, categoria.getId());
@@ -60,7 +77,7 @@ public class SqlCategoriaDao extends Manager implements CategoriaDao{
 
     @Override
     public Optional<Categoria> fetchCategoriaWithProdotti(int categoriaId) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectCategoriaWithProdotti())) {
                 ResultSet set = ps.executeQuery();
                 CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
