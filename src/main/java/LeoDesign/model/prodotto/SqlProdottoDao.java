@@ -4,6 +4,7 @@ import LeoDesign.model.categoria.CategoriaExtractor;
 
 import LeoDesign.model.categoria.SqlCategoriaDao;
 import LeoDesign.model.magazzino.MagazzinoExtractor;
+import LeoDesign.model.magazzino.SqlMagazzinoDao;
 import LeoDesign.model.storage.ConnManager;
 import LeoDesign.model.storage.Manager;
 import LeoDesign.model.storage.Paginator;
@@ -19,11 +20,12 @@ import java.util.Optional;
 
 public class SqlProdottoDao implements ProdottoDao {
     private static final ProdottoQuery QUERY = new ProdottoQuery("Prodotto");
-    //public SqlProdottoDao(DataSource source) {super(source);}
     private SqlCategoriaDao servizioCategoria;
+    private SqlMagazzinoDao servizioMagazzino;
 
     public SqlProdottoDao(){
         servizioCategoria = new SqlCategoriaDao();
+        servizioMagazzino = new SqlMagazzinoDao();
     }
 
 
@@ -35,13 +37,11 @@ public class SqlProdottoDao implements ProdottoDao {
                 ps.setInt(2, paginator.getLimit());
                 ResultSet set = ps.executeQuery();
                 ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
-                CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-                MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                 List<Prodotto> prodotti = new ArrayList<>();
                 while (set.next()){
                     Prodotto prodotto = prodottoExtractor.extract(set);
                     prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
-                    //prodotto.setMagazzino(magazzinoExtractor.extract(set));
+                    prodotto.setMagazzino(servizioMagazzino.fetchMagazzino(set.getInt("magazzino")));
                     prodotti.add(prodotto);
                 }
                 set.close();
@@ -62,10 +62,30 @@ public class SqlProdottoDao implements ProdottoDao {
                     CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
                     MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                     prodotto = prodottoExtractor.extract(set);
-                    prodotto.setCategoria(categoriaExtractor.extract(set));
-                    prodotto.setMagazzino(magazzinoExtractor.extract(set));
+                    prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
+                    prodotto.setMagazzino(servizioMagazzino.fetchMagazzino(set.getInt("magazzino")));
                 }
                 return Optional.ofNullable(prodotto);
+            }
+        }
+    }
+
+    @Override
+    public List<Prodotto> fetchProdottiByCategoria(int id) throws SQLException {
+        try(Connection conn = ConnManager.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement(QUERY.selectProdottoByCategoria())) {
+                List<Prodotto> prodotti = new ArrayList<>();
+                ps.setInt(1,id);
+                ResultSet set = ps.executeQuery();
+                ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
+                while (set.next()){
+                    Prodotto prodotto = prodottoExtractor.extract(set);
+                    prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
+                    prodotto.setMagazzino(servizioMagazzino.fetchMagazzino(set.getInt("magazzino")));
+                    prodotti.add(prodotto);
+                }
+                set.close();
+                return prodotti;
             }
         }
     }

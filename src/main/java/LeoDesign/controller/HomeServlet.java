@@ -25,8 +25,7 @@ public class HomeServlet extends Controller {
         super.init();
         //serviceCart = new SqlCarrelloDAO();
         serviceProduct = new SqlProdottoDao();
-        //getServletContext().setAttribute("filter",1);//default
-       // getServletContext().setAttribute("numItems",0);//default
+
     }
 
     @Override

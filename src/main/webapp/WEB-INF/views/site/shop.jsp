@@ -5,87 +5,61 @@
 <html lang="en">
 
 <head>
+    <title>Leo Design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/product.css">
+    <link rel="stylesheet" href="assets/css/shop.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" charset="utf-8"></script>
 
     <jsp:include page="../partials/head.jsp">
-        <jsp:param name="title" value="Leo Design"/>
-        <jsp:param name="styles" value="gallery.css,card.css"/>
-        <jsp:param name="script" value="sidebar.js,gallery.js,gifHover.js"/>
+        <jsp:param name="title" value="Prodotti-trovati"/>
+        <jsp:param name="styles" value="shop.css"/>
+        <jsp:param name="script" value="sidebar.js,gifHover.js"/>
     </jsp:include>
-
 </head>
 
 <body>
 
 <header>
 
-    <!-- Start Menu Bar -->
-
     <jsp:include page="../partials/header.jsp"/>
-
-    <!-- End Menu Bar -->
 
 </header>
 
-<!-- Start Gallery -->
-<div class="slider-wrapper">
-    <button class="slide-arrow" id="slide-arrow-prev">
-        &#8249;
-    </button>
-    <button class="slide-arrow" id="slide-arrow-next">
-        &#8250;
-    </button>
-    <div class="slides-container" id="slides-container">
-        <c:forEach items="${listaProdotti}" var="prodotto">
-        <div class="slide display-inline-flex">
-            <div>
+<!-- Start shop -->
+<div class="shop ">
+    <c:forEach items="${lista}" var="prodotto">
+        <a href="${context}/prodotto?idProdotto=${prodotto.idProdotto}">
+            <div  class="single-product display-flex justify-content-around ">
+                <img src="${prodotto.immagine1}">
 
-                <h1> ${prodotto.nome} </h1>
-                <p>${prodotto.descrizione} </p>
-                <a href="${context}/prodotto?idProdotto=${prodotto.idProdotto}">
-                    <button class="button" >Acquista ora</button>
-                </a>
+                <div class="modulo">
+                    <h1>${prodotto.nome}</h1>
+                    <p>${prodotto.descrizione}</p>
+                    <h2>${prodotto.prezzo}</h2>
+                </div>
             </div>
-            <img src="${prodotto.immagine2}">
-        </div>
-        </c:forEach>
-
-    </div>
-</div>
-
-<!--End Gallery -->
-
-<!-- Start Banner Cards -->
-<div class="banner">
-    <h1> Prodotti in evidenza</h1>
-</div>
-
-<!--End Banner Cards -->
-
-
-<!-- Start Product Card -->
-<div class="cards display-flex justify-content-between align-items-stretch">
-
-    <c:forEach begin="0" end="3" items="${listaProdotti}" var="prodotto">
-
-        <div class="justify-content-between display-inline-flex">
-            <div class="card">
-                <a href="${context}/prodotto?idProdotto=${prodotto.idProdotto}">
-                    <div class="card-img"> <img width="90%" src="${prodotto.immagine1}"></div>
-                    <div class="card-info">
-                        <div class="card-text">
-                            <h1 class="text-title">${prodotto.nome}</h1>
-                            <p class="text-subtitle">€ ${prodotto.prezzo}</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        </a>
     </c:forEach>
-
-
 </div>
 
-<!-- End Product Card -->
+<!-- End shop -->
+
+<!-- start pagination -->
+<div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="NameServlet?page=1">1</a>
+    <a href="NameServlet?page=2">2</a>
+    <a href="NameServlet?page=3">3</a>
+    <a href="#">&raquo;</a>
+</div>
+<!-- end pagination -->
 
 <!-- Start Footer -->
 <footer class="footer">
@@ -132,6 +106,7 @@
 </footer>
 
 <!-- End Footer -->
+
 </body>
 
 </html>

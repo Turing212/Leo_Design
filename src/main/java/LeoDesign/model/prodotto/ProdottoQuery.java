@@ -9,9 +9,11 @@ public class ProdottoQuery extends TableQuery {
     String selectProdotti() {
         return String.format("SELECT * FROM %s LIMIT ?, ?;", this.table);
     }
-
     String selectProdotto() {
         return String.format("SELECT * FROM %s WHERE idProdotto=?;", table);
+    }
+    String selectProdottoByCategoria() {
+        return String.format("SELECT * FROM %s WHERE categoria=?;", table);
     }
     String insertProdotto() {
         return String.format("INSERT INTO %s (nome, descrizione, prezzo, peso, immagine1, immagine2, immagine3, magazzino, categoria) VALUES(?,?,?,?,?,?,?,?,?);", table);
