@@ -31,7 +31,8 @@ public class HomeServlet extends Controller {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Paginator paginator = new Paginator(1,10);
+        Paginator paginator = new Paginator(1,8);
+        paginator.setOffset(0);
         try {
             List<Prodotto> prodotti = serviceProduct.fetchProdotti(paginator);
             request.setAttribute("listaProdotti", prodotti);

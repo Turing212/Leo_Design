@@ -167,7 +167,7 @@
                     <button class="button" >Acquista ora</button>
                 </a>
             </div>
-            <img src="${prodotti.immagine1}">
+            <img src="${prodotti.immagine2}">
         </div>
         </c:forEach>
 
@@ -178,7 +178,7 @@
 
 <!-- Start Banner Cards -->
 <div class="banner">
-    <h1> Prodotti di tendenza</h1>
+    <h1> Prodotti in evidenza</h1>
 </div>
 
 <!--End Banner Cards -->
@@ -186,61 +186,23 @@
 
 <!-- Start Product Card -->
 <div class="cards display-flex justify-content-between align-items-stretch">
-    <div class="justify-content-between display-inline-flex">
-        <div class="card">
-            <a href="shop-single.html">
-                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <h1 class="text-title">Lampada da tavolo</h1>
-                        <p class="text-subtitle">€ 49.99</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
 
-    <div class="justify-content-between display-inline-flex">
-        <div class="card">
-            <a href="shop-single.html">
-                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <h1 class="text-title">Lampada da tavolo</h1>
-                        <p class="text-subtitle">€ 49.99</p>
+    <c:forEach begin="0" end="3" items="${listaProdotti}" var="prodotti">
+        <div class="justify-content-between display-inline-flex">
+            <div class="card">
+                <a href="shop-single.html">
+                    <div class="card-img"> <img width="90%" src="${prodotti.immagine1}"></div>
+                    <div class="card-info">
+                        <div class="card-text">
+                            <h1 class="text-title">${prodotti.nome}</h1>
+                            <p class="text-subtitle">€ ${prodotti.prezzo}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
-    </div>
+    </c:forEach>
 
-    <div class="justify-content-between display-inline-flex">
-        <div class="card">
-            <a href="shop-single.html">
-                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <h1 class="text-title">Lampada da tavolo</h1>
-                        <p class="text-subtitle">€ 49.99</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="justify-content-between display-inline-flex">
-        <div class="card">
-            <a href="shop-single.html">
-                <div class="card-img"> <img width="90%" src="assets/img/lamp.png"></div>
-                <div class="card-info">
-                    <div class="card-text">
-                        <h1 class="text-title">Lampada da tavolo</h1>
-                        <p class="text-subtitle">€ 49.99</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
 
 </div>
 

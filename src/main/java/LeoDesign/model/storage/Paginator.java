@@ -2,7 +2,7 @@ package LeoDesign.model.storage;
 
 public class Paginator {
     private final int limit;
-    private final int offset;
+    private int offset;
 
     public Paginator(int pagina, int itemsPerPagina) {
         this.limit = itemsPerPagina;
@@ -15,5 +15,9 @@ public class Paginator {
 
     public int getOffset() {
         return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 }
