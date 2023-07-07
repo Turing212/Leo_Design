@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 
 
-public abstract class Controller extends HttpServlet{
+public abstract class Controller extends HttpServlet implements Etichette{
 
 
     protected String getPath(HttpServletRequest req){

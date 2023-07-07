@@ -2,6 +2,7 @@ package LeoDesign.controller;
 
 
 import LeoDesign.controller.http.Controller;
+import LeoDesign.controller.http.Etichette;
 import LeoDesign.model.prodotto.Prodotto;
 import LeoDesign.model.prodotto.SqlProdottoDao;
 import LeoDesign.model.storage.Paginator;
@@ -16,7 +17,7 @@ import java.util.List;
 
 
 @WebServlet(name = "HomeServlet", value = "/index.html", loadOnStartup = 0)
-public class HomeServlet extends Controller {
+public class HomeServlet extends Controller{
 
     //SqlCarrelloDAO serviceCart;
     SqlProdottoDao serviceProduct;
@@ -34,7 +35,7 @@ public class HomeServlet extends Controller {
         paginator.setOffset(0);
         try {
             List<Prodotto> prodotti = serviceProduct.fetchProdotti(paginator);
-            request.setAttribute("listaProdotti", prodotti);
+            request.setAttribute(LISTA_PRODOTTI, prodotti);
             request.getRequestDispatcher(view("site/index")).forward(request, response);
         } catch (SQLException e) {
             throw new RuntimeException(e);

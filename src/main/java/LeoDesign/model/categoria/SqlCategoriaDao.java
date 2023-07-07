@@ -1,10 +1,8 @@
 package LeoDesign.model.categoria;
 
 import LeoDesign.model.storage.ConnManager;
-import LeoDesign.model.storage.Manager;
 import LeoDesign.model.prodotto.ProdottoExtractor;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,9 +74,10 @@ public class SqlCategoriaDao implements CategoriaDao{
     }
 
     @Override
-    public Optional<Categoria> fetchCategoriaWithProdotti(int categoriaId) throws SQLException {
+    public Categoria fetchCategoriaWithProdotti(int categoriaId) throws SQLException {
         try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectCategoriaWithProdotti())) {
+                ps.setInt(1,categoriaId);
                 ResultSet set = ps.executeQuery();
                 CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
                 Categoria categoria = null;
@@ -92,7 +91,7 @@ public class SqlCategoriaDao implements CategoriaDao{
                     }
 
                 }
-                return Optional.ofNullable(categoria);
+                return categoria;
             }
         }
     }

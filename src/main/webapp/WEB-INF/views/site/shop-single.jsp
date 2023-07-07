@@ -40,7 +40,7 @@
     <div class="modulo">
         <h1>${prodotto.nome}</h1>
         <p>${prodotto.descrizione} </p>
-        <h2>€${prodotto.prezzo}</h2>
+        <h2>€ ${prodotto.prezzo}</h2>
         <form action="#" class="align-items-center">
             <div class="aggiungi">
                 <select class="quantita" name="quantita" id="quantita">

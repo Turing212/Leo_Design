@@ -1,3 +1,4 @@
+<%@ page import="java.util.regex.Pattern" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <c:set var="context" value="${pageContext.request.contextPath}"/>
@@ -5,21 +6,10 @@
 <html lang="en">
 
 <head>
-    <title>Leo Design</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" type="text/css" href="assets/css/common.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/product.css">
-    <link rel="stylesheet" href="assets/css/shop.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" charset="utf-8"></script>
 
     <jsp:include page="../partials/head.jsp">
-        <jsp:param name="title" value="Prodotti-trovati"/>
-        <jsp:param name="styles" value="shop.css"/>
+        <jsp:param name="title" value="${categoria}"/>
+        <jsp:param name="styles" value="shop.css,product.css"/>
         <jsp:param name="script" value="sidebar.js,gifHover.js"/>
     </jsp:include>
 </head>
@@ -34,15 +24,15 @@
 
 <!-- Start shop -->
 <div class="shop ">
-    <c:forEach items="${lista}" var="prodotto">
+    <c:forEach items="${listaProdotti}" var="prodotto">
         <a href="${context}/prodotto?idProdotto=${prodotto.idProdotto}">
             <div  class="single-product display-flex justify-content-around ">
-                <img src="${prodotto.immagine1}">
+                <img src="${context}/${prodotto.immagine1}">
 
                 <div class="modulo">
                     <h1>${prodotto.nome}</h1>
                     <p>${prodotto.descrizione}</p>
-                    <h2>${prodotto.prezzo}</h2>
+                    <h2>€ ${prodotto.prezzo}</h2>
                 </div>
             </div>
         </a>
@@ -69,7 +59,7 @@
             <ul class="list-unstyled">
                 <li>
 
-                    <h2>Via Giovanni Paolo II, 132, 84084 Fisciano SA <img src="assets/img/location.gif" width="50px" height="50px"> </h2>
+                    <h2>Via Giovanni Paolo II, 132, 84084 Fisciano SA <img src="${context}/assets/img/location.gif" width="50px" height="50px"> </h2>
                 </li>
 
                 <li>

@@ -11,6 +11,6 @@ public class CategoriaQuery extends TableQuery {
     String selectCategoria() { return String.format("SELECT * FROM %s WHERE idCategoria=?;", this.table); }
     String insertCategoria() { return String.format("INSERT INTO %s (titolo) VALUES(?);", this.table); }
     String updateCategoria() { return String.format("UPDATE FROM %s SET titolo=? WHERE idCategoria=?;", this.table); }
-    String selectCategoriaWithProdotti(){ return "SELECT * FROM categoria INNER JOIN prodotto ON categoria.idCategoria = prodotto.categoria_fk WHERE categoria.idCategoria=?"; }
+    String selectCategoriaWithProdotti(){ return "SELECT * FROM categoria INNER JOIN prodotto ON categoria.idCategoria = prodotto.categoria WHERE categoria.idCategoria=?"; }
 
 }

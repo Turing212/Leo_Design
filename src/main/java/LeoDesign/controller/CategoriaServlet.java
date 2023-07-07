@@ -1,6 +1,7 @@
 package LeoDesign.controller;
 
 import LeoDesign.controller.http.Controller;
+import LeoDesign.controller.http.Etichette;
 import LeoDesign.controller.http.InvalidRequestException;
 import LeoDesign.model.categoria.Categoria;
 import LeoDesign.model.categoria.SqlCategoriaDao;
@@ -14,9 +15,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "CategoriaServlet", value = "/categoria/*")
-public class CategoriaServlet extends Controller {
+public class CategoriaServlet extends Controller{
     SqlCategoriaDao serviceCategory;
     @Override
     public void init() throws ServletException {
@@ -27,7 +29,7 @@ public class CategoriaServlet extends Controller {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = getPath(request);
-        Optional<Categoria> categoria = null;
+        Categoria categoria = null;
 
         switch (path) {
             case "/Armadi-e-guardaroba":
@@ -37,14 +39,26 @@ public class CategoriaServlet extends Controller {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                request.setAttribute("lista", categoria.get().getProdotti());
-
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, "Armadi e guardaroba");
                 break;
             case "/Tavoli-e-scrivania":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(3);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, "Tavoli e scrivanie");
                 break;
             case "/Divani":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(5);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, "Divani");
                 break;
             case "/Cassettiere":
 

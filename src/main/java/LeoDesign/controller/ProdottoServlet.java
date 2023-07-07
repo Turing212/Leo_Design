@@ -1,6 +1,7 @@
 package LeoDesign.controller;
 
 import LeoDesign.controller.http.Controller;
+import LeoDesign.controller.http.Etichette;
 import LeoDesign.model.prodotto.Prodotto;
 import LeoDesign.model.prodotto.SqlProdottoDao;
 import jakarta.servlet.*;
@@ -27,7 +28,7 @@ public class ProdottoServlet extends Controller {
         try {
             Optional<Prodotto> prodotto = serviceProduct.fetchProdotto(idProdotto);
             if(prodotto.isPresent()){
-                request.setAttribute("prodotto", prodotto.get());
+                request.setAttribute(PRODOTTO, prodotto.get());
                 request.getRequestDispatcher(view("site/shop-single")).forward(request, response);
             }
         } catch (SQLException e) {
