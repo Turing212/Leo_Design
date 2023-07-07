@@ -40,8 +40,5 @@ public class HomeServlet extends Controller{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
-
     }
 }

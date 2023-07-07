@@ -67,57 +67,12 @@
 
 <!-- End Product -->
 
-
 <!-- Start Footer -->
-<footer class="footer">
-    <div class="display-inline-flex">
-        <div class=" ">
-            <h1 class="border-bottom" >Leo Design</h1>
-            <ul class="list-unstyled">
-                <li>
 
-                    <h2>Via Giovanni Paolo II, 132, 84084 Fisciano SA <img src="assets/img/location.gif" width="50px" height="50px"> </h2>
-                </li>
-
-                <li>
-                    <i class="fa fa-envelope fa-fw"></i>
-                    <a class="text-decoration-none" href="mailto:a.leo85@studenti.unisa.it">a.leo85@studenti.unisa.it</a>
-                </li>
-            </ul>
-        </div>
-
-        <div>
-            <h1 class="border-bottom" >Prodotti</h1>
-            <ul class="list-unstyled">
-                <li><a class="text-decoration-none" href="#">Mobili</a></li>
-                <li><a class="text-decoration-none" href="#">Cucine</a></li>
-                <li><a class="text-decoration-none" href="#">Soggiorno</a></li>
-                <li><a class="text-decoration-none" href="#">Mobili e soluzioni per il bagno</a></li>
-                <li><a class="text-decoration-none" href="#">Camere da letto</a></li>
-            </ul>
-        </div>
-
-        <div >
-            <h1 class="border-bottom" >Ulteriori info</h1>
-            <ul class="list-unstyled">
-                <li><a class="text-decoration-none" href="#">Home</a></li>
-                <li><a class="text-decoration-none" href="#">Carrello</a></li>
-                <li><a class="text-decoration-none" href="#">About Us</a></li>
-                <li><a class="text-decoration-none" href="#">Contact</a></li>
-            </ul>
-        </div>
-
-    </div>
-
-
-</footer>
+<jsp:include page="../partials/footer.jsp"/>
 
 <!-- End Footer -->
 
-<!-- Start Script -->
-<script src="assets/js/gifHover.js"></script>
-<script src="assets/js/sidebar.js"></script>
-<!-- End Script -->
 </body>
 
 </html>

@@ -40,7 +40,8 @@ public class CategoriaServlet extends Controller{
                     throw new RuntimeException(e);
                 }
                 request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
-                request.setAttribute(NOME_CATEGORIA, "Armadi e guardaroba");
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Tavoli-e-scrivania":
                 try {
@@ -49,7 +50,8 @@ public class CategoriaServlet extends Controller{
                     throw new RuntimeException(e);
                 }
                 request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
-                request.setAttribute(NOME_CATEGORIA, "Tavoli e scrivanie");
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Divani":
                 try {
@@ -58,7 +60,8 @@ public class CategoriaServlet extends Controller{
                     throw new RuntimeException(e);
                 }
                 request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
-                request.setAttribute(NOME_CATEGORIA, "Divani");
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Cassettiere":
 
@@ -79,7 +82,6 @@ public class CategoriaServlet extends Controller{
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Prodotto non trovato");
         }
-        request.getRequestDispatcher(view("site/shop")).forward(request, response);
     }
 
     @Override
