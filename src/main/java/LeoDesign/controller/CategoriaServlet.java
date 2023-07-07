@@ -64,20 +64,55 @@ public class CategoriaServlet extends Controller{
                 request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Cassettiere":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(6);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Letti":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(24);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Mobili-da-cucina":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(9);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
 
             case "/Strutture-letto":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(24);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             case "/Pareti-attrezzate":
-
+                try {
+                    categoria = serviceCategory.fetchCategoriaWithProdotti(16);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                request.setAttribute(LISTA_PRODOTTI, categoria.getProdotti());
+                request.setAttribute(NOME_CATEGORIA, categoria.getTitolo());
+                request.getRequestDispatcher(view("site/shop")).forward(request, response);
                 break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Prodotto non trovato");

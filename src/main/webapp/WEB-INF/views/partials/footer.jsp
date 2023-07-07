@@ -3,8 +3,21 @@
 <c:set var="context" value="${pageContext.request.contextPath}"/>
 <footer class="footer">
     <div class="display-inline-flex">
-        <div class=" ">
+        <div>
+            <img src="${context}/assets/img/logo.png">
+        </div>
+        <div>
             <h1 class="border-bottom" >Leo Design</h1>
+            <ul class="list-unstyled">
+                <li><a class="text-decoration-none" href="${context}/footer/show">Mostra tutti i prodotti</a></li>
+                <li><a class="text-decoration-none" href="${context}">Home</a></li>
+                <li><a class="text-decoration-none" href="#">Carrello</a></li>
+                <li><a class="text-decoration-none" href="#">About Us</a></li>
+                <li><a class="text-decoration-none" href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1 class="border-bottom">Ulteriori info</h1>
             <ul class="list-unstyled">
                 <li>
 
@@ -17,20 +30,6 @@
                 </li>
             </ul>
         </div>
-
-
-
-        <div >
-            <h1 class="border-bottom" >Ulteriori info</h1>
-            <ul class="list-unstyled">
-                <li><a class="text-decoration-none" href="${context}/footer/show">Mostra tutti i prodotti</a></li>
-                <li><a class="text-decoration-none" href="${context}">Home</a></li>
-                <li><a class="text-decoration-none" href="#">Carrello</a></li>
-                <li><a class="text-decoration-none" href="#">About Us</a></li>
-                <li><a class="text-decoration-none" href="#">Contact</a></li>
-            </ul>
-        </div>
-
     </div>
 
 

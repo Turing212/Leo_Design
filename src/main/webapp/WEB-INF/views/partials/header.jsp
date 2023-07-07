@@ -14,7 +14,7 @@
                 <img src="${context}/assets/img/menu-end.png" class="toggle">
             </div>
             <div class="menu">
-                <div class="item"><a href="home.jsp"><i ></i>Home</a> </div>
+                <div class="item"><a href="${context}"><i ></i>Home</a> </div>
                 <div class="item">
                     <a class="sub-btn"><i ></i>Catalogo <i class="dropdown"> &gt; </i></a>
                     <div class="sub-menu">
