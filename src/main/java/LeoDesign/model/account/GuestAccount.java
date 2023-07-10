@@ -1,10 +1,7 @@
 package LeoDesign.model.account;
 
 import LeoDesign.model.carrello.GuessCart;
-import Model.Carrello.Carrello;
-import Model.Carrello.GuessCart;
 
-import java.util.List;
 
 public class GuestAccount {
 

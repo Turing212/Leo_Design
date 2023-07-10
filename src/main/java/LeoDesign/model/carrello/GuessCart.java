@@ -100,8 +100,8 @@ public class GuessCart {
 
     public double total(){
         double total = 0;
-        for(Item i: this.items){
-            total += i.getTotale();
+        for(CarrelloItem i: this.items){
+            total += i.totale();
         }
         return roundDouble(total, 2);
     }
