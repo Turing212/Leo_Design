@@ -87,7 +87,7 @@
     <div id="logCarrelloContainer" class="display-inline-flex justify-content-between common-margin">
         <div id="loginContainer" class="common-margin">
             <button class="button">
-                <a href="login.jsp">
+                <a href="${context}/crm/dashboard">
                     <img id="avatar-png" onmouseover="avatar()" width="40em" height="40em" src="${context}/assets/img/avatar.png" alt="login/register">
                     <img id="avatar-gif" onmouseout="avatar()" style="display: none;" width="40em" height="40em" src="${context}/assets/img/avatar.gif" alt="login/register">
                 </a>
