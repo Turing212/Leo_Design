@@ -139,4 +139,17 @@ public class SqlProdottoDao implements ProdottoDao {
             }
         }
     }
+    public int getProductQuantity(int idProd) throws SQLException{
+        try(Connection conn = ConnManager.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement(QUERY.selectQuantita())){
+                ps.setInt(1,idProd);
+                ResultSet rs = ps.executeQuery();
+                int quantity = 0;
+                if(rs.next()){
+                    quantity = rs.getInt("quantita");
+                }
+                return quantity;
+            }
+        }
+    }
 }

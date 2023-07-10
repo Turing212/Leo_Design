@@ -1,14 +1,34 @@
 package LeoDesign.model.carrello;
 
+import LeoDesign.model.account.Account;
 import LeoDesign.model.prodotto.Prodotto;
 
 import java.util.List;
 
 public class Carrello {
+    private String email;
+    private Account user;
     private List<CarrelloItem> items;
 
     public Carrello(List<CarrelloItem> items) {
         this.items = items;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Account getUser() {
+        return user;
+    }
+
+    public void setUser(Account user) {
+        this.user = user;
     }
 
     public List<CarrelloItem> getItems() {

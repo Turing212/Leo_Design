@@ -4,7 +4,7 @@ import LeoDesign.model.prodotto.Prodotto;
 
 public class CarrelloItem {
     private final Prodotto prodotto;
-    private final int quantita;
+    private int quantita;
 
     public CarrelloItem(Prodotto prodotto, int quantita) {
         this.prodotto = prodotto;
@@ -17,6 +17,10 @@ public class CarrelloItem {
 
     public int getQuantita() {
         return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
     }
 
     public double totale() {

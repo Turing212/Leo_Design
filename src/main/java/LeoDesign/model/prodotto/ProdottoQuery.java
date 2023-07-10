@@ -24,4 +24,7 @@ public class ProdottoQuery extends TableQuery {
     String deleteProdotto() {
         return String.format("DELETE FROM %s WHERE idProdotto=?;", table);
     }
+    String selectQuantita() {
+        return String.format("SELECT qauntita FROM %s WHERE idProdotto=?;", table);
+    }
 }
