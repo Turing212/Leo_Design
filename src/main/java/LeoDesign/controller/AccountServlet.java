@@ -1,5 +1,6 @@
 package LeoDesign.controller;
 
+import LeoDesign.Alert;
 import LeoDesign.controller.http.Controller;
 import LeoDesign.controller.http.InvalidRequestException;
 import LeoDesign.model.account.Account;
@@ -84,9 +85,31 @@ public class AccountServlet extends Controller {
                     break;
                 case "/logout":
                     break;
-                case "/signup":     //registrazione cliente
+                case "/signup": { //registrazione cliente
+                    HttpSession session = request.getSession(false);
+                    if (session != null) {
+                        session.invalidate();
+                    }
+                    request.setAttribute("back", view("site/signUp"));
+                    validate(AccountValidator.validateForm(request));
+                    Account account = new Account();
+                    account.setNome(request.getParameter("nome"));
+                    account.setCognome(request.getParameter("cognome"));
+                    account.setEmail(request.getParameter("signupEmail"));
+                    account.setPassword(request.getParameter("signupPass"));
+                    account.setAdmin(false);
+                    if (service.createAccount(account)) {
+                        request.setAttribute("alert", new Alert(Arrays.asList("Account Creato!"), "success"));
+                        request.getSession(true).setAttribute("accountSession", new AccountSession(account));
+                        request.setAttribute("profile", account);
+                        request.setAttribute("fullName", account.getNome() + " " + account.getCognome());
+                        request.getRequestDispatcher(view("../index.html")).forward(request, response);
+                    } else {
+                        internalError();
+                    }
                     break;
-                case "/signin": //login cliente (cerca nel db)
+                }
+                case "/signin": { //login cliente (cerca nel db)
                     HttpSession session = request.getSession(false);
                     if (session != null) {
                         session.invalidate();
@@ -113,6 +136,7 @@ public class AccountServlet extends Controller {
                                 Arrays.asList("Credenziali non valide"), HttpServletResponse.SC_BAD_REQUEST);
                     }
                     break;
+                }
                 default:
                     response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
 

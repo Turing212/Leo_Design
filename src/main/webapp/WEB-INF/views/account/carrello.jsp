@@ -16,31 +16,37 @@
 
 <!-- Start carrello -->
 <div class="carrello">
-
-    <c:forEach items="${carrello.items}" var="item">
-        <div class="single-product display-flex justify-content-around ">
-            <img src="${context}/${item.prodotto.immagine1}">
-            <div class="modulo">
-                <h1>${item.prodotto.nome} </h1>
-                <p>${item.prodotto.descrizione} </p>
-                <div>
-                    <a href="#">Rimuovi</a>
+<c:choose>
+    <c:when test="${carrello.items.size() > 0}">
+        <c:forEach items="${carrello.items}" var="item">
+            <div class="single-product display-flex justify-content-around ">
+                <img src="${context}/${item.prodotto.immagine1}">
+                <div class="modulo">
+                    <h1>${item.prodotto.nome} </h1>
+                    <p>${item.prodotto.descrizione} </p>
+                    <div>
+                        <a href="#">Rimuovi</a>
+                    </div>
+                </div>
+                <div class="modulo">
+                    <h2>${item.prodotto.prezzo}</h2>
+                    <p>Quantita: ${item.quantita}</p>
                 </div>
             </div>
-            <div>
-                <h2>${item.prodotto.prezzo}</h2>
-                <p>Quantita: <span> ${item.quantita} </span></p>
-            </div>
+        </c:forEach>
+    </div>
+
+    <div class="totale-ordine display-flex justify-content-between align-items-center ">
+        <h1>Totale importo: <span>${carrello.totale()}</span></h1>
+        <a href="pagamento.html"><button class="button">Procedi all'ordine</button></a>
+    </div>
+    </c:when>
+    <c:otherwise>
+        <div class="display-flex justify-content-center align-items-center ">
+            <h1>Carrello vuoto</h1>
         </div>
-    </c:forEach>
-
-</div>
-
-<div class="totale-ordine display-flex justify-content-between align-items-center ">
-    <h1>Totale importo: <span>${carrello.totale()}</span></h1>
-    <a href="pagamento.html"><button class="button">Procedi all'ordine</button></a>
-</div>
-
+    </c:otherwise>
+</c:choose>
 <!-- End carrello -->
 </body>
 </html>

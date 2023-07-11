@@ -6,9 +6,10 @@
         <form action="${context}/accounts/signup" method="post">
             <h1>Crea Account</h1>
             <span>o usa la tua email per la registrazione</span>
-            <input type="text" placeholder="Nome" id="nome"/>
-            <input type="email" placeholder="Email" id="signupEmail"/>
-            <input type="password" placeholder="Password" id="signupPass"/>
+            <input type="text" placeholder="Nome" id="nome" name="nome"/>
+            <input type="text" placeholder="Cognome" id="cognome" name="cognome"/>
+            <input type="email" placeholder="Email" id="signupEmail" name="signupEmail"/>
+            <input type="password" placeholder="Password" id="signupPass" name="signupPass"/>
             <button type="submit">Registrati</button>
         </form>
     </div>

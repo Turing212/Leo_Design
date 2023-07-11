@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.File;
 
 
-public abstract class Controller extends HttpServlet implements Etichette{
+public abstract class Controller extends HttpServlet implements Etichette, ErrorHandler{
 
 
     protected String getPath(HttpServletRequest req){
@@ -37,13 +37,6 @@ public abstract class Controller extends HttpServlet implements Etichette{
 
     protected GuestAccount getGuestAccount(HttpSession session){
         return (GuestAccount) session.getAttribute("accountGuest");
-    }
-    protected String getUploadPath(){
-        return System.getenv("CATALINA_HOME") + File.separator + "uploads" + File.separator;
-    }
-
-    protected int parsePage(HttpServletRequest request){
-        return Integer.parseInt(request.getParameter("page"));
     }
 
 

@@ -49,9 +49,11 @@ public class CarrelloServlet extends Controller {
 
                         request.getRequestDispatcher(view("account/carrello")).forward(request,response);
                     }else{
-                        response.sendRedirect("../account/signin");
+                        request.getRequestDispatcher(view("account/carrello")).forward(request,response);
                     }
-
+                break;
+                default:
+                    notFound();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
