@@ -1,5 +1,6 @@
 package LeoDesign.model.account;
 
+import LeoDesign.model.storage.ConnManager;
 import LeoDesign.model.storage.Manager;
 import LeoDesign.model.storage.Paginator;
 
@@ -12,16 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SqlAccountDao extends Manager implements AccountDao{
+public class SqlAccountDao implements AccountDao{
 
     private static final AccountQuery QUERY = new AccountQuery("Cliente");
-    public SqlAccountDao(DataSource source) {
-        super(source);
-    }
+
 
     @Override
     public List<Account> fetchAccounts(Paginator paginator) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectAccounts())) {
                 ps.setInt(1, paginator.getOffset());
                 ps.setInt(2, paginator.getLimit());
@@ -40,7 +39,7 @@ public class SqlAccountDao extends Manager implements AccountDao{
 
     @Override
     public Optional<Account> fetchAccount(String email) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectAccount())) {
                 ps.setString(1, email);
                 ResultSet set = ps.executeQuery();
@@ -53,10 +52,26 @@ public class SqlAccountDao extends Manager implements AccountDao{
             }
         }
     }
+    public Optional<Account> findAccountByEmailPwd(String email, String password, boolean admin) throws SQLException{
+        try (Connection con = ConnManager.getConnection()) {
+            try(PreparedStatement ps = con.prepareStatement(QUERY.selectAccountByEmailPass())) {
+                ps.setBoolean(1, admin);
+                ps.setString(2, email);
+                ps.setString(3, password);
+                ResultSet rs = ps.executeQuery();
+                AccountExtractor extractor = new AccountExtractor();
+                Account account = null;
+                if (rs.next()) {
+                    account = extractor.extract(rs);
+                }
+                return Optional.ofNullable(account);
+            }
+        }
+    }
 
     @Override
     public boolean createAccount(Account account) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.insertAccount())) {
                 ps.setString(1, account.getEmail());
                 ps.setString(2, account.getPassword());
@@ -76,7 +91,7 @@ public class SqlAccountDao extends Manager implements AccountDao{
 
     @Override
     public boolean updateAccount(Account account) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.updateAccount())) {
                 ps.setString(1, account.getTelefono());
                 ps.setString(2, account.getIndirizzo());
@@ -92,7 +107,7 @@ public class SqlAccountDao extends Manager implements AccountDao{
 
     @Override
     public boolean deleteAccount(String email) throws SQLException {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.deleteAccount())) {
                 ps.setString(1, email);
                 int rows = ps.executeUpdate();

@@ -14,6 +14,9 @@ class AccountQuery extends TableQuery {
     String selectAccount() {
         return String.format("SELECT * FROM %s WHERE email=?;", table);
     }
+    String selectAccountByEmailPass() {
+        return String.format("SELECT * FROM %s WHERE account_admin=? AND email=? AND pass=?;", table);
+    }
     String insertAccount() {
         return String.format("INSERT INTO %s (email, pass,nome,cognome,telefono,indirizzo,provincia,citta,CAP,account_admin) VALUES(?,?,?,?,?,?,?,?,?,?);", table);
     }

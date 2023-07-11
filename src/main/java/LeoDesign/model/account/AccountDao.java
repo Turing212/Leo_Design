@@ -10,6 +10,7 @@ public interface AccountDao {
 
     List<Account> fetchAccounts(Paginator paginator) throws SQLException;
     Optional<Account> fetchAccount(String email) throws SQLException;
+    Optional<Account> findAccountByEmailPwd(String email, String password, boolean admin) throws SQLException;
     boolean createAccount(Account account)throws SQLException;
     boolean updateAccount(Account account)throws SQLException;
     boolean deleteAccount(String email) throws SQLException;
