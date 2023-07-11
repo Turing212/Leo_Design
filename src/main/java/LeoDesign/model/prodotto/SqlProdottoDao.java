@@ -59,8 +59,6 @@ public class SqlProdottoDao implements ProdottoDao {
                 Prodotto prodotto = null;
                 if (set.next()) {
                     ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
-                    CategoriaExtractor categoriaExtractor = new CategoriaExtractor();
-                    MagazzinoExtractor magazzinoExtractor = new MagazzinoExtractor();
                     prodotto = prodottoExtractor.extract(set);
                     prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
                     prodotto.setMagazzino(servizioMagazzino.fetchMagazzino(set.getInt("magazzino")));
@@ -98,11 +96,12 @@ public class SqlProdottoDao implements ProdottoDao {
                 ps.setString(2, prodotto.getDescrizione());
                 ps.setFloat(3, prodotto.getPrezzo());
                 ps.setFloat(4,prodotto.getPeso());
-                ps.setString(5, prodotto.getImmagine1());
-                ps.setString(6, prodotto.getImmagine2());
-                ps.setString(7, prodotto.getImmagine3());
-                ps.setInt(8, prodotto.getMagazzino().getIDmagazzino());
-                ps.setInt(9, prodotto.getCategoria().getId());
+                ps.setInt(5,prodotto.getDisponibilita());
+                ps.setString(6, prodotto.getImmagine1());
+                ps.setString(7, prodotto.getImmagine2());
+                ps.setString(8, prodotto.getImmagine3());
+                ps.setInt(9, prodotto.getMagazzino().getIDmagazzino());
+                ps.setInt(10, prodotto.getCategoria().getId());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
@@ -117,12 +116,13 @@ public class SqlProdottoDao implements ProdottoDao {
                 ps.setString(2, prodotto.getDescrizione());
                 ps.setFloat(3, prodotto.getPrezzo());
                 ps.setFloat(4,prodotto.getPeso());
-                ps.setString(5, prodotto.getImmagine1());
-                ps.setString(6, prodotto.getImmagine2());
-                ps.setString(7, prodotto.getImmagine3());
-                ps.setInt(8, prodotto.getMagazzino().getIDmagazzino());
-                ps.setInt(9, prodotto.getCategoria().getId());
-                ps.setInt(10, prodotto.getIdProdotto());
+                ps.setInt(5,prodotto.getDisponibilita());
+                ps.setString(6, prodotto.getImmagine1());
+                ps.setString(7, prodotto.getImmagine2());
+                ps.setString(8, prodotto.getImmagine3());
+                ps.setInt(9, prodotto.getMagazzino().getIDmagazzino());
+                ps.setInt(10, prodotto.getCategoria().getId());
+                ps.setInt(11, prodotto.getIdProdotto());
                 int rows = ps.executeUpdate();
                 return rows == 1;
             }
@@ -139,16 +139,16 @@ public class SqlProdottoDao implements ProdottoDao {
             }
         }
     }
-    public int getProductQuantity(int idProd) throws SQLException{
+    public int getProductAvailability(int idProd) throws SQLException{
         try(Connection conn = ConnManager.getConnection()){
-            try(PreparedStatement ps = conn.prepareStatement(QUERY.selectQuantita())){
+            try(PreparedStatement ps = conn.prepareStatement(QUERY.selectAvailability())){
                 ps.setInt(1,idProd);
                 ResultSet rs = ps.executeQuery();
-                int quantity = 0;
+                int availability = 0;
                 if(rs.next()){
-                    quantity = rs.getInt("quantita");
+                    availability = rs.getInt("disponibilita");
                 }
-                return quantity;
+                return availability;
             }
         }
     }

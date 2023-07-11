@@ -30,7 +30,7 @@ public class GuessCart {
     public void updateProductsQuantity() throws SQLException {
         SqlProdottoDao service = new SqlProdottoDao();
         for(CarrelloItem i: this.items){
-            i.setQuantita(service.getProductQuantity(i.getProdotto().getIdProdotto()));
+            i.getProdotto().setDisponibilita(service.getProductAvailability(i.getProdotto().getIdProdotto()));
         }
     }
     public boolean itemIsPresent(int idProd){
@@ -81,7 +81,13 @@ public class GuessCart {
         }
         return 0;
     }
-
+    public double totale() {
+        double totale = 0.0;
+        for (CarrelloItem item: items){
+            totale += item.totale();
+        }
+        return totale;
+    }
     public double getTotalOfProd(int idProd){
         for(CarrelloItem i: this.items){
             if(i.getProdotto().getIdProdotto() == idProd){

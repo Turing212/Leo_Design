@@ -14,6 +14,7 @@ public class Prodotto {
     private String immagine3;
     private Magazzino magazzino;
     private Categoria categoria;
+    private int disponibilita;
 
 
     public Prodotto() {
@@ -98,5 +99,13 @@ public class Prodotto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public int getDisponibilita() {
+        return disponibilita;
+    }
+
+    public void setDisponibilita(int disponibilita) {
+        this.disponibilita = disponibilita;
     }
 }

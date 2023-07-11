@@ -29,6 +29,8 @@ public class ProdottoServlet extends Controller {
             Optional<Prodotto> prodotto = serviceProduct.fetchProdotto(idProdotto);
             if(prodotto.isPresent()){
                 request.setAttribute(PRODOTTO, prodotto.get());
+                String fullUrl = request.getRequestURI() +"?"+ request.getQueryString();
+                request.setAttribute("fullUrl",fullUrl);
                 request.getRequestDispatcher(view("site/shop-single")).forward(request, response);
             }
         } catch (SQLException e) {

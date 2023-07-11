@@ -4,4 +4,5 @@ public interface Etichette {
     public static final String LISTA_PRODOTTI = "listaProdotti";
     public static final String PRODOTTO = "prodotto";
     public static final String NOME_CATEGORIA = "categoria";
+    public static final String CARRELLO = "carrello";
 }

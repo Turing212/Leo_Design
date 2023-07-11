@@ -1,4 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.regex.Pattern" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +44,11 @@
         <h1>${prodotto.nome}</h1>
         <p>${prodotto.descrizione} </p>
         <h2>€ ${prodotto.prezzo}</h2>
-        <form action="#" class="align-items-center">
+        <form action="${context}/carrello/add" method="post" class="align-items-center">
+            <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+            <c:if test="${not empty fullUrl}">
+                <input type="hidden" name="urlSource" value="${fullUrl}">
+            </c:if>
             <div class="aggiungi">
                 <select class="quantita" name="quantita" id="quantita">
                     <option value="1">1</option>
@@ -55,7 +62,7 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
-                <button class="button">Aggiungere al carrello</button>
+                <button type="submit" class="button">Aggiungere al carrello</button>
             </div>
         </form>
 

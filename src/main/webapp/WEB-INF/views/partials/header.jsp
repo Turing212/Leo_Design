@@ -95,7 +95,7 @@
         </div>
         <div id="carrelloContainer" class="common-margin">
             <button class="button">
-                <a href="carrello.jsp">
+                <a href="${context}/carrello">
                     <img id="carrello-png" onmouseover="carrello()"  width="40em" height="40em" src="${context}/assets/img/carrello.png" alt="carrello">
                     <img id="carrello-gif" onmouseout="carrello()" style="display: none;" width="40em" height="40em" src="${context}/assets/img/carrello.gif" alt="carrello">
                 </a>
