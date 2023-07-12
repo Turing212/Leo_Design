@@ -6,7 +6,7 @@
   <jsp:include page="../partials/head.jsp">
     <jsp:param name="title" value="login"/>
     <jsp:param name="styles" value="login.css,product.css"/>
-    <jsp:param name="script" value="sidebar.js,gifHover.js,login.js"/>
+    <jsp:param name="script" value="sidebar.js,gifHover.js,login.js,alert.js"/>
   </jsp:include>
 </head>
 <body>

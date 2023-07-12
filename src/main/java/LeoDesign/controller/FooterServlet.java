@@ -1,10 +1,9 @@
 package LeoDesign.controller;
 
 import LeoDesign.controller.http.Controller;
-import LeoDesign.model.categoria.Categoria;
 import LeoDesign.model.prodotto.Prodotto;
 import LeoDesign.model.prodotto.SqlProdottoDao;
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

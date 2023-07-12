@@ -1,6 +1,6 @@
 package LeoDesign.model.prodotto;
 
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 
 import java.sql.SQLException;
 import java.util.List;

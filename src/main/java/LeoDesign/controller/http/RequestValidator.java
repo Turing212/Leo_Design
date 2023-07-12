@@ -13,7 +13,7 @@ public class RequestValidator {
     private final HttpServletRequest request;
     private static final Pattern INT_PATTERN = Pattern.compile("^\\d+$");
     private static final Pattern DOUBLE_PATTERN = Pattern.compile("^(-)?(0|[1-9]\\d+)\\.\\d+$");
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile("(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{5,}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("((?=.*[0-9])(?=.*[a-zA-Z]).{8,})");
 
     public RequestValidator(HttpServletRequest request) {
         this.errors = new ArrayList<>();

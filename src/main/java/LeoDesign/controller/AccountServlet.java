@@ -1,12 +1,12 @@
 package LeoDesign.controller;
 
-import LeoDesign.Alert;
 import LeoDesign.controller.http.Controller;
 import LeoDesign.controller.http.InvalidRequestException;
 import LeoDesign.model.account.Account;
 import LeoDesign.model.account.AccountSession;
 import LeoDesign.model.account.AccountValidator;
 import LeoDesign.model.account.SqlAccountDao;
+import LeoDesign.model.components.Alert;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,11 +53,14 @@ public class AccountServlet extends Controller {
             case "/secret":  //login admin (pagina)
                 request.getRequestDispatcher(view("/WEB-INF/views/crm/secret.jsp")).forward(request, response);
                 break;
+            case "/profilo":  //login admin (pagina)
+                request.getRequestDispatcher(view("/WEB-INF/views/account/profilo.jsp")).forward(request, response);
+                break;
 
             case "/signin-signup":  //login o registrazione cliente (pagina)
                 HttpSession session = request.getSession(false);
                 if(session != null && session.getAttribute("accountSession") != null){
-                    response.sendRedirect("/account/profile");
+                    response.sendRedirect("/accounts/profilo");
                 }else{
                     request.getRequestDispatcher(view("site/signin-signup")).forward(request, response);
                 }
@@ -98,14 +101,16 @@ public class AccountServlet extends Controller {
                     account.setEmail(request.getParameter("signupEmail"));
                     account.setPassword(request.getParameter("signupPass"));
                     account.setAdmin(false);
-                    if (service.createAccount(account)) {
+                    try {
+                        service.createAccount(account);
                         request.setAttribute("alert", new Alert(Arrays.asList("Account Creato!"), "success"));
                         request.getSession(true).setAttribute("accountSession", new AccountSession(account));
                         request.setAttribute("profile", account);
                         request.setAttribute("fullName", account.getNome() + " " + account.getCognome());
-                        request.getRequestDispatcher(view("../index.html")).forward(request, response);
-                    } else {
-                        internalError();
+                        response.sendRedirect("../index.html");
+                    }catch (SQLException e){
+                        request.setAttribute("alert", new Alert(Arrays.asList("Profilo esistente!"), "danger"));
+                        request.getRequestDispatcher(view("site/signin-signup")).forward(request, response);
                     }
                     break;
                 }

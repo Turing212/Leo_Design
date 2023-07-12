@@ -97,6 +97,10 @@
     transition: all 0.6s ease-in-out;
 }
 
+.form-container p {
+    color: #989898;
+}
+
 .sign-in-container {
     left: 0;
     width: 50%;

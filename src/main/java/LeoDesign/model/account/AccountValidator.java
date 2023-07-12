@@ -12,6 +12,7 @@ public class AccountValidator {
         validator.assertMatch("nome", Pattern.compile("^[a-zA-Z ]{1,40}$"), "Nome compreso tra i 1 e 40 caratteri");
         validator.assertMatch("cognome", Pattern.compile("^[a-zA-Z ]{1,40}$"), "Cognome compreso tra i 1 e 40 caratteri");
         validator.assertEmail("signupEmail","Formato email errato");
+        validator.assertPassword("signupPass", "Formato password errato");
         return validator;
     }
 

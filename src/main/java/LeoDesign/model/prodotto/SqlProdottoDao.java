@@ -1,15 +1,10 @@
 package LeoDesign.model.prodotto;
 
-import LeoDesign.model.categoria.CategoriaExtractor;
-
 import LeoDesign.model.categoria.SqlCategoriaDao;
-import LeoDesign.model.magazzino.MagazzinoExtractor;
 import LeoDesign.model.magazzino.SqlMagazzinoDao;
 import LeoDesign.model.storage.ConnManager;
-import LeoDesign.model.storage.Manager;
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -149,6 +144,29 @@ public class SqlProdottoDao implements ProdottoDao {
                     availability = rs.getInt("disponibilita");
                 }
                 return availability;
+            }
+        }
+    }
+    public List<Prodotto> doRetrieveByKeyword(Paginator paginator, String keyword) throws SQLException{
+        try (Connection con = ConnManager.getConnection()) {
+            String query = "SELECT * FROM Prodotto WHERE disponibilita > 0 AND nome LIKE '%"+keyword+"%' LIMIT ? OFFSET ?";
+            try(PreparedStatement ps = con.prepareStatement(query)) {
+                ps.setInt(1,paginator.getLimit());
+                ps.setInt(2,paginator.getOffset());
+                ResultSet set = ps.executeQuery();
+                ProdottoExtractor prodottoExtractor = new ProdottoExtractor();
+                List<Prodotto> prodotti = new ArrayList<>();
+                while (set.next()) {
+                    Prodotto prodotto = prodottoExtractor.extract(set);
+                    prodotto.setCategoria(servizioCategoria.fetchCategoriaById(set.getInt("categoria")));
+                    prodotto.setMagazzino(servizioMagazzino.fetchMagazzino(set.getInt("magazzino")));
+                    prodotti.add(prodotto);
+                }
+                if (prodotti.size() > 0) {
+                    return prodotti;
+                } else {
+                    return null;
+                }
             }
         }
     }

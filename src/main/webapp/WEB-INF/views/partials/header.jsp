@@ -75,8 +75,8 @@
     <!-- End sidebar -->
 
     <div class="common-margin">
-        <form action="HomeControllerSearchBar" id="searchBarForm" class="display-inline-flex justify-content-between common-margin">
-            <input placeholder="Cerca" class="search" id="searchBarText" type="text">
+        <form action="${context}/search" id="searchBarForm" class="display-inline-flex justify-content-between common-margin">
+            <input placeholder="Cerca" class="search" id="searchBarText" type="text" name="query">
             <button type="submit" value="Submit" class="button">
                 <img id="search-png" onmouseover="search()"  width="40em" height="40em" src="${context}/assets/img/search.png" alt="cerca">
                 <img id="search-gif" onmouseout="search()" style="display: none;" width="40em" height="40em" src="${context}/assets/img/search.gif" alt="cerca">

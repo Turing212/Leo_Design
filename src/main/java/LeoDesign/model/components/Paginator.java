@@ -1,4 +1,4 @@
-package LeoDesign.model.storage;
+package LeoDesign.model.components;
 
 public class Paginator {
     private final int limit;
@@ -6,7 +6,7 @@ public class Paginator {
 
     public Paginator(int pagina, int itemsPerPagina) {
         this.limit = itemsPerPagina;
-        this.offset = (pagina -1) * itemsPerPagina + 1;
+        this.offset = (pagina == 1) ? 0 : (pagina - 1) * itemsPerPagina;
     }
 
     public int getLimit() {

@@ -1,10 +1,8 @@
 package LeoDesign.model.account;
 
 import LeoDesign.model.storage.ConnManager;
-import LeoDesign.model.storage.Manager;
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

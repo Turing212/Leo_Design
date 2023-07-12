@@ -1,7 +1,7 @@
 package LeoDesign.model.magazzino;
 
 import LeoDesign.model.storage.ConnManager;
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class SqlMagazzinoDao implements MagazzinoDao {
     private static final MagazzinoQuery QUERY = new MagazzinoQuery("Magazzino");

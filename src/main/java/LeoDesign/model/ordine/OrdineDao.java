@@ -1,6 +1,6 @@
 package LeoDesign.model.ordine;
 
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 
 import java.util.List;
 import java.util.Optional;

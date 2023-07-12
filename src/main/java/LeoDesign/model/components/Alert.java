@@ -1,4 +1,4 @@
-package LeoDesign;
+package LeoDesign.model.components;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import LeoDesign.model.magazzino.Magazzino;
 import LeoDesign.model.magazzino.MagazzinoExtractor;
 import LeoDesign.model.prodotto.Prodotto;
 import LeoDesign.model.storage.Manager;
-import LeoDesign.model.storage.Paginator;
+import LeoDesign.model.components.Paginator;
 import LeoDesign.model.prodotto.ProdottoExtractor;
 
 import javax.sql.DataSource;
