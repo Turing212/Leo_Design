@@ -11,7 +11,7 @@
             <ul class="list-unstyled">
                 <li><a class="text-decoration-none" href="${context}/footer/show">Mostra tutti i prodotti</a></li>
                 <li><a class="text-decoration-none" href="${context}">Home</a></li>
-                <li><a class="text-decoration-none" href="#">Carrello</a></li>
+                <li><a class="text-decoration-none" href="${context}/carrello">Carrello</a></li>
                 <li><a class="text-decoration-none" href="#">About Us</a></li>
                 <li><a class="text-decoration-none" href="#">Contact</a></li>
             </ul>

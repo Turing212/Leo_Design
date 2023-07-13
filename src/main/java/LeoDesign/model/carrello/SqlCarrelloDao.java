@@ -44,6 +44,18 @@ public class SqlCarrelloDao implements CarrelloDao{
             }
         }
     }
+    public boolean removeProduct(int idProd, String email) throws SQLException{
+        try(Connection con = ConnManager.getConnection()){
+            try(PreparedStatement ps = con.prepareStatement(QUERY.removeProduct())) {
+                ps.setString(1, email);
+                ps.setInt(2,idProd);
+                if(ps.executeUpdate() != 1){
+                    return false;
+                }
+                return true;
+            }
+        }
+    }
     @Override
     public List<CarrelloItem> articoliByUserEmail(String email) throws Exception {
         try(Connection con = ConnManager.getConnection()){

@@ -66,63 +66,116 @@ public class CarrelloServlet extends Controller {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
         String path = getPath(request);
-        switch (path){
-            case "/add":
+        switch (path) {
+            case "/add": {
+                HttpSession session = request.getSession(false);
+                if (session != null && session.getAttribute("accountSession") != null) {
+                    int quantity = Integer.parseInt(request.getParameter("quantita"));
+                    int productId = Integer.parseInt(request.getParameter("idProdotto"));
+                    if (quantity > 0 && productId > 0) {
+                        AccountSession accountSession = getAccountSession(session);
+                        int precQuantity = 0;
+
+                        precQuantity = serviceCart.productExists(accountSession.getEmail(), productId);
+
+                        if (precQuantity > 0) {
+                            serviceCart.updateQuantity(productId, accountSession.getEmail(), (precQuantity + quantity));
+                        } else {
+                            serviceCart.addProduct(productId, accountSession.getEmail(), quantity);
+                        }
+                        serviceCart.updateNumeroArticoli(accountSession.getEmail());
+                        if (request.getParameterMap().containsKey("urlSource")) {
+                            String back = request.getParameter("urlSource");
+                            response.sendRedirect(back);
+                        } else {
+                            response.sendRedirect("/index.html");
+                        }
+                    } else {
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                    }
+                } else if (session != null) {
+                    int quantity = Integer.parseInt(request.getParameter("quantita"));
+                    int productId = Integer.parseInt(request.getParameter("idProdotto"));
+                    if (quantity > 0 && productId > 0) {
+                        GuestAccount accountGuest = null;
+                        if (session.getAttribute("accountGuest") != null) {
+                            accountGuest = getGuestAccount(session);
+                        } else {
+                            accountGuest = new GuestAccount();
+                        }
+                        Optional<Prodotto> prodotto = serviceProduct.fetchProdotto(productId);
+                        if (prodotto.isPresent()) {
+                            accountGuest.getCart().addItem(prodotto.get(), quantity);
+                            session.setAttribute("accountGuest", accountGuest);
+                            if (request.getParameterMap().containsKey("urlSource")) {
+                                String back = request.getParameter("urlSource");
+                                response.sendRedirect(back);
+                            } else {
+                                response.sendRedirect("../index.html");
+                            }
+                        } else {
+                            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                        }
+                    } else {
+                        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                    }
+                } else {
+                    response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
+                }
+                break;
+        }
+            case "/remove": {
                 HttpSession session = request.getSession(false);
                 if (session != null && session.getAttribute("accountSession") != null) {
                     int quantity = Integer.parseInt(request.getParameter("quantita"));
                     int productId = Integer.parseInt(request.getParameter("idProdotto"));
                     if(quantity > 0 && productId > 0){
                         AccountSession accountSession = getAccountSession(session);
-                        int precQuantity = 0;
-
-                            precQuantity = serviceCart.productExists(accountSession.getEmail(),productId);
-
+                        int precQuantity = serviceCart.productExists(accountSession.getEmail(),productId);
                         if(precQuantity > 0){
-                            serviceCart.updateQuantity(productId, accountSession.getEmail(), (precQuantity+quantity));
-                        }else{
-                            serviceCart.addProduct(productId, accountSession.getEmail(), quantity);
+                            if((precQuantity-quantity) <= 0){
+                                serviceCart.removeProduct(productId, accountSession.getEmail());
+                            }else {
+                                serviceCart.updateQuantity(productId, accountSession.getEmail(), (precQuantity-quantity));
+                            }
                         }
                         serviceCart.updateNumeroArticoli(accountSession.getEmail());
-                        if(request.getParameterMap().containsKey("urlSource")){
-                            String back = request.getParameter("urlSource");
-                            response.sendRedirect(back);
-                        }else {
-                            response.sendRedirect("/index.html");
+                        if(request.getParameterMap().containsKey("isCart")){
+                            response.sendRedirect("../carrello");
+                        }else{
+                            response.sendRedirect("../index.html");
                         }
                     }else {
-                        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                        notFound();
                     }
-                }else if(session != null){
+                }else if(session != null && session.getAttribute("accountGuest") != null){
                     int quantity = Integer.parseInt(request.getParameter("quantita"));
                     int productId = Integer.parseInt(request.getParameter("idProdotto"));
                     if(quantity > 0 && productId > 0){
-                        GuestAccount accountGuest = null;
-                        if(session.getAttribute("accountGuest") != null){
-                            accountGuest = getGuestAccount(session);
+                        GuestAccount accountGuest = getGuestAccount(session);
+                        accountGuest.getCart().removeItem(productId, quantity);
+                        session.setAttribute("accountGuest",accountGuest);
+                        if(request.getParameterMap().containsKey("isCart")){
+                            response.sendRedirect("../carrello");
                         }else{
-                            accountGuest = new GuestAccount();
-                        }
-                        Optional<Prodotto> prodotto = serviceProduct.fetchProdotto(productId);
-                        if(prodotto.isPresent()){
-                            accountGuest.getCart().addItem(prodotto.get(),quantity);
-                            session.setAttribute("accountGuest",accountGuest);
-                            if(request.getParameterMap().containsKey("urlSource")){
-                                String back = request.getParameter("urlSource");
-                                response.sendRedirect(back);
-                            }else {
-                                response.sendRedirect("../index.html");
-                            }
-                        }else {
-                            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                            response.sendRedirect("../index.html");
                         }
                     }else {
-                        response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
+                        notFound();
                     }
                 }else {
-                    response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Operazione non consentita");
+                    notAllowed();
                 }
+
+
+
+
+
+
+
+
                 break;
+            }
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");
         }

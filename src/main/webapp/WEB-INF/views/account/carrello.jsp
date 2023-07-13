@@ -19,20 +19,26 @@
 <c:choose>
     <c:when test="${carrello.items.size() > 0}">
         <c:forEach items="${carrello.items}" var="item">
-            <div class="single-product display-flex justify-content-around ">
-                <img src="${context}/${item.prodotto.immagine1}">
-                <div class="modulo">
-                    <h1>${item.prodotto.nome} </h1>
-                    <p>${item.prodotto.descrizione} </p>
-                    <div>
-                        <a href="#">Rimuovi</a>
+
+                    <div class="single-product display-flex justify-content-around ">
+                        <a class="art" href="${context}/prodotto?idProdotto=${item.prodotto.idProdotto}">
+                        <img src="${context}/${item.prodotto.immagine1}">
+                        </a>
+                        <div class="modulo">
+                            <h1>${item.prodotto.nome} </h1>
+                            <p>${item.prodotto.descrizione} </p>
+                            <form action="${context}/carrello/remove"method="post">
+                                <input type="hidden" name="isCart" value="cart">
+                                <input type="hidden" name="quantita" value="${item.quantita}">
+                                <button style="all: unset" type="submit" name="idProdotto" value="${item.prodotto.idProdotto}"><a>Rimuovi</a></button>
+                            </form>
+                        </div>
+                        <div class="modulo">
+                            <h2>${item.prodotto.prezzo}</h2>
+                            <p>Quantita: ${item.quantita}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="modulo">
-                    <h2>${item.prodotto.prezzo}</h2>
-                    <p>Quantita: ${item.quantita}</p>
-                </div>
-            </div>
+
         </c:forEach>
     </div>
 

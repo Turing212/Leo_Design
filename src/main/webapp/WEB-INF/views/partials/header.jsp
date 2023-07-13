@@ -65,7 +65,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="item"><a href=""><i ></i>Carrello</a> </div>
+                <div class="item"><a href="${context}/footer/show"><i ></i>Mostra tutti i prodotti</a> </div>
+                <div class="item"><a href="${context}/carrello"><i ></i>Carrello</a> </div>
                 <div class="item"><a href=""><i ></i>About us</a> </div>
                 <div class="item"><a href=""><i ></i>Contattaci</a> </div>
             </div>

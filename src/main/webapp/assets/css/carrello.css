@@ -10,12 +10,18 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 .single-product {
     margin: 50px;
     padding: 20px;
     background-color: #eeeeee;
 
 }
+.art img {
+    height: 260px;
+    width: 260px;
+}
+
 .totale-ordine {
     margin: 20px;
     padding: 20px;
