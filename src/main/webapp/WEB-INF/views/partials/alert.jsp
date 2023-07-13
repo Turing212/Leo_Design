@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="context" value="${pageContext.request.contextPath}"/>
 <div class="notification ${alert.type}" id="alertContainer">
-    <ol class="cell">
+    <ol>
         <c:forEach var="msg" items="${alert.messages}">
             <li>${msg}</li>
         </c:forEach>

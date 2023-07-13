@@ -6,6 +6,10 @@
         <%@include file="../partials/alert.jsp"%>
     </c:if>
 </div>
+<div class="notification danger grid-x justify-content-center align-items-center">
+    <p id="emailError"></p>
+    <p id="passError"></p>
+</div>
 <div class="login-signup" id="container">
     <div class="form-container sign-up-container">
         <form action="${context}/accounts/signup" method="post">
@@ -13,11 +17,11 @@
             <span>o usa la tua email per la registrazione</span>
 
             <input type="text" placeholder="Nome" id="nome" name="nome"/>
-            <input type="text" placeholder="Cognome" id="cognome" name="cognome"/>
+            <input type="text" placeholder="Cognome" id="cognome" name="cognome" />
             <input type="email" placeholder="Email" id="signupEmail" name="signupEmail"/>
             <input type="password" placeholder="Password" id="signupPass" name="signupPass"/>
             <p>la password inserita deve essere lunga almeno 8 caratteri e deve contenere almeno una lettera e almeno un numero</p>
-            <button type="submit">Registrati</button>
+            <button type="submit" onclick="validazione()">Registrati</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
