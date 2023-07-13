@@ -9,7 +9,7 @@
     <jsp:include page="../partials/head.jsp">
         <jsp:param name="title" value="Shop single"/>
         <jsp:param name="styles" value="product.css"/>
-        <jsp:param name="script" value="sidebar.js,gifHover.js"/>
+        <jsp:param name="script" value="sidebar.js,gifHover.js,addCartEvent.js"/>
     </jsp:include>
 
 </head>
@@ -44,8 +44,8 @@
         <h1>${prodotto.nome}</h1>
         <p>${prodotto.descrizione} </p>
         <h2>€ ${prodotto.prezzo}</h2>
-        <form action="${context}/carrello/add" method="post" class="align-items-center">
-            <input type="hidden" name="idProdotto" value="${prodotto.idProdotto}">
+        <div class="align-items-center">
+            <input type="hidden" name="idProdotto" id="idProdotto" value="${prodotto.idProdotto}">
             <c:if test="${not empty fullUrl}">
                 <input type="hidden" name="urlSource" value="${fullUrl}">
             </c:if>
@@ -62,9 +62,9 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
-                <button type="submit" class="button">Aggiungere al carrello</button>
+                <button type="button" class="button" name="add" id="add" onclick="addCart('${context}')">Aggiungere al carrello</button>
             </div>
-        </form>
+        </div>
 
 
     </div>
