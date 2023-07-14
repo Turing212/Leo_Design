@@ -74,16 +74,14 @@ public class CarrelloServlet extends Controller {
                     int productId = Integer.parseInt(request.getParameter("idProdotto"));
                     if (quantity > 0 && productId > 0) {
                         AccountSession accountSession = getAccountSession(session);
-                        int precQuantity = 0;
-
-                        precQuantity = serviceCart.productExists(accountSession.getEmail(), productId);
+                        int precQuantity = serviceCart.productExists(accountSession.getEmail(), productId);
 
                         if (precQuantity > 0) {
                             serviceCart.updateQuantity(productId, accountSession.getEmail(), (precQuantity + quantity));
                         } else {
                             serviceCart.addProduct(productId, accountSession.getEmail(), quantity);
                         }
-                        serviceCart.updateNumeroArticoli(accountSession.getEmail());
+
                         if (request.getParameterMap().containsKey("urlSource")) {
                             String back = request.getParameter("urlSource");
                             response.sendRedirect(back);

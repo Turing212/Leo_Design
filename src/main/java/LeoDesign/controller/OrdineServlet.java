@@ -63,7 +63,6 @@ public class OrdineServlet extends Controller {
                             synchronized (serviceCreate){
                                 if(serviceCreate.createPurchase(ordineCustomer)){
                                     serviceCart.clearDBCart(accountSession.getEmail());
-                                    session.setAttribute("numItems",0);
                                     request.getRequestDispatcher(view("customer/guestOrder")).forward(request,response);
                                 }else{
                                     internalError();

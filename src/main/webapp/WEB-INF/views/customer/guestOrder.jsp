@@ -17,6 +17,7 @@
     <div class="carrello">
     <div class="display-flex justify-content-center align-items-center">
         <h1>Ordine effettuato con successo.</h1>
+        <h2><a class="text-decoration-none" href="${context}">Continua ad esplorare</a></h2>
     </div>
     </div>
 
