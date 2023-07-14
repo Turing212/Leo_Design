@@ -2,8 +2,11 @@ package LeoDesign.model.ordine;
 
 import LeoDesign.model.account.Account;
 import LeoDesign.model.carrello.Carrello;
+import LeoDesign.model.carrello.CarrelloItem;
+import LeoDesign.model.carrello.GuessCart;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class Ordine {
@@ -13,6 +16,7 @@ public class Ordine {
     private double totale;
     private Account account;
     private Carrello carrello;
+    private GuessCart guessCart;
 
 
     public Ordine() {
@@ -27,8 +31,8 @@ public class Ordine {
         this.IDordine = IDordine;
     }
 
-    public LocalDate getInserimento() {
-        return inserimento;
+    public String getInserimento() {
+        return this.inserimento.toString();
     }
 
     public void setInserimento(LocalDate inserimento) {
@@ -66,6 +70,21 @@ public class Ordine {
     public void setCarrello(Carrello carrello) {
         this.carrello = carrello;
     }
+
+    public GuessCart getGuessCart() {
+        return guessCart;
+    }
+
+    public void setGuessCart(GuessCart guessCart) {
+        this.guessCart = guessCart;
+    }
+    public List<CarrelloItem> getItems() {
+        return this.carrello.getItems();
+    }
+    public List<CarrelloItem> getGuessItems(){
+        return this.guessCart.getItems();
+    }
+
     public int entrate(){
         return carrello.getItems().size();
     }

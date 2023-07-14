@@ -15,4 +15,5 @@ public class CarrelloQuery extends TableQuery {
     String updateNumeroArticoli() { return String.format("UPDATE %s SET quantita=? WHERE email=?;", this.table); }
     String updateQuantity() { return String.format("UPDATE %s SET quantita=? WHERE email=? AND prodotto=?;", this.table); }
     String sumOfProduct() { return String.format("SELECT SUM(quantita) FROM %s WHERE email=?", this.table); }
+    String clearDBCart() { return String.format("DELETE FROM %s WHERE email=?;", this.table); }
 }

@@ -170,4 +170,15 @@ public class SqlProdottoDao implements ProdottoDao {
             }
         }
     }
+    public void updateProductQuantity(int idProd, int quantita) throws SQLException{
+        try(Connection conn = ConnManager.getConnection()){
+            try(PreparedStatement ps = conn.prepareStatement(QUERY.updateQuantitaProdotto())){
+                ps.setInt(1, quantita);
+                ps.setInt(2, idProd);
+                if(ps.executeUpdate() != 1){
+                    throw new RuntimeException();
+                }
+            }
+        }
+    }
 }

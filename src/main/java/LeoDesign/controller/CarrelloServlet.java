@@ -88,7 +88,7 @@ public class CarrelloServlet extends Controller {
                             String back = request.getParameter("urlSource");
                             response.sendRedirect(back);
                         } else {
-                            response.sendRedirect("/index.html");
+                            response.sendRedirect("../index.html");
                         }
                     } else {
                         response.sendError(HttpServletResponse.SC_NOT_FOUND, "Risorsa non trovato");

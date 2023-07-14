@@ -7,6 +7,7 @@ import LeoDesign.model.categoria.CategoriaExtractor;
 import LeoDesign.model.magazzino.Magazzino;
 import LeoDesign.model.magazzino.MagazzinoExtractor;
 import LeoDesign.model.prodotto.Prodotto;
+import LeoDesign.model.storage.ConnManager;
 import LeoDesign.model.storage.Manager;
 import LeoDesign.model.components.Paginator;
 import LeoDesign.model.prodotto.ProdottoExtractor;
@@ -17,15 +18,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class SqlOrdineDao extends Manager implements OrdineDao{
+public class SqlOrdineDao implements OrdineDao{
     private static final OrdineQuery QUERY = new OrdineQuery("Ordine");
-    public SqlOrdineDao(DataSource source) {
-        super(source);
-    }
 
     @Override
     public List<Ordine> fetchOrdini(Paginator paginator) throws Exception {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectOrdini())) {
                 ps.setInt(1, paginator.getOffset());
                 ps.setInt(2, paginator.getLimit());
@@ -42,7 +40,7 @@ public class SqlOrdineDao extends Manager implements OrdineDao{
 
     @Override
     public List<Ordine> fetchOrdiniWithProdotti(int idAccount, Paginator paginator) throws Exception {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectOrdiniWithProdotti())) {
                 ps.setInt(1, idAccount);
                 ps.setInt(2, paginator.getOffset());
@@ -74,7 +72,7 @@ public class SqlOrdineDao extends Manager implements OrdineDao{
 
     @Override
     public Optional<Ordine> fetchOrdine(int id) throws Exception {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.selectOrdine())) {
                 ps.setInt(1, id);
                 ResultSet set = ps.executeQuery();
@@ -90,7 +88,7 @@ public class SqlOrdineDao extends Manager implements OrdineDao{
 
     @Override
     public boolean createOrdine(Ordine ordine) throws Exception {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             conn.setAutoCommit(false);
             try(
                     PreparedStatement ps = conn.prepareStatement(QUERY.createOrdine());
@@ -119,7 +117,7 @@ public class SqlOrdineDao extends Manager implements OrdineDao{
 
     @Override
     public boolean updateOrdine(String stato, int id) throws Exception {
-        try(Connection conn = source.getConnection()){
+        try(Connection conn = ConnManager.getConnection()){
             try(PreparedStatement ps = conn.prepareStatement(QUERY.updateOrdine())) {
                 ps.setString(1, stato);
                 ps.setInt(2, id);

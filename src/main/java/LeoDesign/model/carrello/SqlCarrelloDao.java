@@ -134,5 +134,16 @@ public class SqlCarrelloDao implements CarrelloDao{
             }
         }
     }
+    public void clearDBCart(String email) throws SQLException{
+        try(Connection con = ConnManager.getConnection()){
+            try(PreparedStatement ps = con.prepareStatement(QUERY.clearDBCart())) {
+                ps.setString(1,email);
+                if(ps.executeUpdate() < 1){
+                    throw new RuntimeException();
+                }
+                updateNumeroArticoli(email);
+            }
+        }
+    }
 
 }

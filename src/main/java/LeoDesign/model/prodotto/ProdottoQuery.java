@@ -21,6 +21,9 @@ public class ProdottoQuery extends TableQuery {
     String updateProdotto() {
         return String.format("UPDATE FROM %s SET nome=?, descrizione=?, prezzo=?, peso=?, disponibilita=?, immagine1=?, immagine2=?, immagine3=? magazzino=?, categoria=?  WHERE idProdotto=?;", table);
     }
+    String updateQuantitaProdotto() {
+        return String.format("UPDATE FROM %s SET disponibilita=? WHERE idProdotto=?;", table);
+    }
     String deleteProdotto() {
         return String.format("DELETE FROM %s WHERE idProdotto=?;", table);
     }

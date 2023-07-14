@@ -44,7 +44,10 @@
 
     <div class="totale-ordine display-flex justify-content-between align-items-center ">
         <h1>Totale importo: <span>${carrello.totale()}</span></h1>
-        <a href="pagamento.html"><button class="button">Procedi all'ordine</button></a>
+        <form action="${context}/ordine/create" method="post">
+            <button type="submit" class="button">Procedi all'ordine</button>
+        </form>
+
     </div>
     </c:when>
     <c:otherwise>
